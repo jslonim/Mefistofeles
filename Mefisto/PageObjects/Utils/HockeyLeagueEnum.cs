@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mefistofeles.PageObjects.Utils
 {
-    public enum HockeyLeague
+    public enum HockeyLeagueEnum
     {
         NHL = 1,
         KHL = 2

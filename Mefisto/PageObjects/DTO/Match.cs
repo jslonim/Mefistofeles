@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Mefistofeles.PageObjects.DTO
 {
-    public class HockeyMatch
+    public class Match
     {
         public Team Local { get; set; }
         public Team Visiting { get; set; }
         public DateTime MatchDttm { get; set; }
         public float TieOdds{get;set;}
 
-        public HockeyMatch(Team local, Team visiting, DateTime matchDttm,float tieOdds = 0)
+        public Match(Team local, Team visiting, DateTime matchDttm,float tieOdds = 0)
         {
             Local = local;
             Visiting = visiting;

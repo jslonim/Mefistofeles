@@ -6,11 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Mefistofeles.PageObjects.MisMarcadores
 {
-    public class MMHockey : PageObjectBase
+    public class Hockey : PageObjectBase
     {
         private string URL;
         private By matches_Hockey = By.CssSelector("li .eventView");
@@ -18,12 +19,12 @@ namespace Mefistofeles.PageObjects.MisMarcadores
         private By match_Time = By.CssSelector(".match-time");
         private By match_Odds = By.CssSelector(".selectionOdds");
 
-        public List<HockeyMatch> GetMatchesByLeague(HockeyLeague league)
+        public List<Match> GetMatchesByLeague(HockeyLeagueEnum league)
         {
-            List<HockeyMatch> matches = new List<HockeyMatch>();
+            List<Match> matches = new List<Match>();
             switch (league)
             {
-                case HockeyLeague.NHL:
+                case HockeyLeagueEnum.NHL:
                     URL = "https://www.betstars.com/espanol/#/ice_hockey/competitions/4719984";
                     break;
                 default:
@@ -33,14 +34,14 @@ namespace Mefistofeles.PageObjects.MisMarcadores
             browser.Navigate().GoToUrl(URL);
             WaitUntilElementClickable(match_Odds, 10);
             List<IWebElement> matches_rows = browser.FindElements(matches_Hockey).ToList();
+            Thread.Sleep(500);
             foreach (var match_row in matches_rows)
             {
-                WaitUntilElementClickable(matches_Hockey, 10);
                 string[] matchTime = match_row.FindElement(match_Time).Text.Split(':',' ');            
                 Team local = new Team(match_row.FindElements(match_Teams)[0].Text , float.Parse(match_row.FindElements(match_Odds)[0].Text));
                 Team visiting = new Team(match_row.FindElements(match_Teams)[1].Text, float.Parse(match_row.FindElements(match_Odds)[2].Text));         
                 DateTime matchDttm = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Convert.ToInt32(matchTime[0]), Convert.ToInt32(matchTime[1]), 0);
-                HockeyMatch match = new HockeyMatch(local, visiting, matchDttm, float.Parse(match_row.FindElements(match_Odds)[1].Text));
+                Match match = new Match(local, visiting, matchDttm, float.Parse(match_row.FindElements(match_Odds)[1].Text));
 
                 matches.Add(match);
             }

@@ -59,10 +59,12 @@
     <Compile Include="Config\PageObjectBase.cs" />
     <Compile Include="Config\SeleniumBase.cs" />
     <Compile Include="Mefistofeles.cs" />
-    <Compile Include="PageObjects\DTO\HockeyMatch.cs" />
+    <Compile Include="PageObjects\DTO\Match.cs" />
     <Compile Include="PageObjects\DTO\Team.cs" />
-    <Compile Include="PageObjects\MisMarcadores\MMHockey.cs" />
-    <Compile Include="PageObjects\Utils\HockeyLeague.cs" />
+    <Compile Include="PageObjects\BetStars\Hockey.cs" />
+    <Compile Include="PageObjects\SportsChatPlace\SportsChatPlace.cs" />
+    <Compile Include="PageObjects\Utils\HockeyLeagueEnum.cs" />
+    <Compile Include="PageObjects\Utils\SportEnum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

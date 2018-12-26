@@ -1,4 +1,6 @@
 ﻿using Mefistofeles.Config;
+using Mefistofeles.PageObjects;
+using Mefistofeles.PageObjects.DTO;
 using Mefistofeles.PageObjects.MisMarcadores;
 using Mefistofeles.PageObjects.Utils;
 using System;
@@ -13,8 +15,12 @@ namespace Mefistofeles
     {
         public void Start()
         {
-            MMHockey games = new MMHockey();
-            games.GetMatchesByLeague(HockeyLeague.NHL);
+            Hockey games = new Hockey();
+            SportsChatPlace scp = new SportsChatPlace();
+
+            List<Match> matchList = games.GetMatchesByLeague(HockeyLeagueEnum.NHL);
+            scp.FillMatchesPicks(matchList,AmericanSportEnum.NHL);
+
             browser.Close();
         }
     }
