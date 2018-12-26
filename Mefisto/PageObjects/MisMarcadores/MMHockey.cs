@@ -12,40 +12,40 @@ namespace Mefistofeles.PageObjects.MisMarcadores
 {
     public class MMHockey : PageObjectBase
     {
-        private string URL = "https://www.cbssports.com/nhl/schedule/";
-        private By matches_NHL = By.XPath("//tr[@class='TableBase-bodyTr   ']");
+        private string URL;
+        private By matches_Hockey = By.CssSelector("li .eventView");
+        private By match_Teams = By.CssSelector(".event-schedule-participants-name");
+        private By match_Time = By.CssSelector(".match-time");
+        private By match_Odds = By.CssSelector(".selectionOdds");
 
-        public void GetMatchesByLeague(HockeyLeague league)
+        public List<HockeyMatch> GetMatchesByLeague(HockeyLeague league)
         {
-            By leagueLocator;
             List<HockeyMatch> matches = new List<HockeyMatch>();
             switch (league)
             {
                 case HockeyLeague.NHL:
-                    leagueLocator = matches_NHL;
+                    URL = "https://www.betstars.com/espanol/#/ice_hockey/competitions/4719984";
                     break;
                 default:
-                    leagueLocator = matches_NHL;
+                    URL = "https://www.betstars.com/espanol/#/ice_hockey/competitions/4719984";
                     break;
             }
             browser.Navigate().GoToUrl(URL);
-            WaitUntilElementVisible(leagueLocator);
-            List<IWebElement> matches_rows = browser.FindElements(leagueLocator).ToList();
-
+            WaitUntilElementClickable(match_Odds, 10);
+            List<IWebElement> matches_rows = browser.FindElements(matches_Hockey).ToList();
             foreach (var match_row in matches_rows)
-            {               
-                List<IWebElement> match_cells = match_row.FindElements(By.CssSelector("td")).ToList();
-                string[] matchTime = match_cells[2].Text.Split(':', ' ');
-                Team local = new Team(match_cells[1].Text);
-                Team visiting = new Team(match_cells[0].Text);
-
-                DateTime matchDttm = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, matchTime[2] == "pm" ? Convert.ToInt32(matchTime[0]) + 12 : (Convert.ToInt32(matchTime[0])) , Convert.ToInt32(matchTime[1]) , 0);
-                matchDttm = MefistofelesUtils.ConvertToArgentinaTime(matchDttm);
-
-                HockeyMatch match = new HockeyMatch(local, visiting, matchDttm);
+            {
+                WaitUntilElementClickable(matches_Hockey, 10);
+                string[] matchTime = match_row.FindElement(match_Time).Text.Split(':',' ');            
+                Team local = new Team(match_row.FindElements(match_Teams)[0].Text , float.Parse(match_row.FindElements(match_Odds)[0].Text));
+                Team visiting = new Team(match_row.FindElements(match_Teams)[1].Text, float.Parse(match_row.FindElements(match_Odds)[2].Text));         
+                DateTime matchDttm = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Convert.ToInt32(matchTime[0]), Convert.ToInt32(matchTime[1]), 0);
+                HockeyMatch match = new HockeyMatch(local, visiting, matchDttm, float.Parse(match_row.FindElements(match_Odds)[1].Text));
 
                 matches.Add(match);
             }
+
+             return matches;
         }
         
     }

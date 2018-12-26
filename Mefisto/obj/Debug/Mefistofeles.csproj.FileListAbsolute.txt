@@ -18,8 +18,8 @@ C:\Mefistofeles\Mefisto\bin\Debug\WebDriver.dll
 C:\Mefistofeles\Mefisto\bin\Debug\WebDriver.Support.dll
 C:\Mefistofeles\Mefisto\bin\Debug\WebDriver.xml
 C:\Mefistofeles\Mefisto\bin\Debug\WebDriver.Support.xml
-C:\Mefistofeles\Mefisto\obj\Debug\Mefistofeles.csprojAssemblyReference.cache
 C:\Mefistofeles\Mefisto\obj\Debug\Mefistofeles.csproj.CoreCompileInputs.cache
 C:\Mefistofeles\Mefisto\obj\Debug\Mefistofeles.csproj.CopyComplete
 C:\Mefistofeles\Mefisto\obj\Debug\Mefistofeles.exe
 C:\Mefistofeles\Mefisto\obj\Debug\Mefistofeles.pdb
+C:\Mefistofeles\Mefisto\obj\Debug\Mefistofeles.csprojAssemblyReference.cache
