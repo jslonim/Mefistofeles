@@ -1,0 +1,12 @@
+C:\Users\jslonim\source\repos\Mefistofeles\Mefisto\bin\Debug\Mefisto.exe.config
+C:\Users\jslonim\source\repos\Mefistofeles\Mefisto\bin\Debug\Mefisto.exe
+C:\Users\jslonim\source\repos\Mefistofeles\Mefisto\bin\Debug\Mefisto.pdb
+C:\Users\jslonim\source\repos\Mefistofeles\Mefisto\bin\Debug\WebDriver.dll
+C:\Users\jslonim\source\repos\Mefistofeles\Mefisto\bin\Debug\WebDriver.Support.dll
+C:\Users\jslonim\source\repos\Mefistofeles\Mefisto\bin\Debug\WebDriver.xml
+C:\Users\jslonim\source\repos\Mefistofeles\Mefisto\bin\Debug\WebDriver.Support.xml
+C:\Users\jslonim\source\repos\Mefistofeles\Mefisto\obj\Debug\Mefisto.csprojAssemblyReference.cache
+C:\Users\jslonim\source\repos\Mefistofeles\Mefisto\obj\Debug\Mefisto.csproj.CoreCompileInputs.cache
+C:\Users\jslonim\source\repos\Mefistofeles\Mefisto\obj\Debug\Mefisto.csproj.CopyComplete
+C:\Users\jslonim\source\repos\Mefistofeles\Mefisto\obj\Debug\Mefisto.exe
+C:\Users\jslonim\source\repos\Mefistofeles\Mefisto\obj\Debug\Mefisto.pdb
