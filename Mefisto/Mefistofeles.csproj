@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\MefistofelesBase.cs" />
+    <Compile Include="Config\MefistofelesUtils.cs" />
     <Compile Include="Config\PageObjectBase.cs" />
     <Compile Include="Config\SeleniumBase.cs" />
     <Compile Include="Mefistofeles.cs" />
