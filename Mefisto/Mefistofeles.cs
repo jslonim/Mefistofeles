@@ -14,7 +14,7 @@ namespace Mefistofeles
         public void Start()
         {
             MMHockey games = new MMHockey();
-            games.GetMatchesByLeague(HockeyLeague.KHL);
+            games.GetMatchesByLeague(HockeyLeague.NHL);
             browser.Close();
         }
     }
