@@ -34,14 +34,14 @@ namespace Mefistofeles.PageObjects.MisMarcadores
             browser.Navigate().GoToUrl(URL);
             WaitUntilElementClickable(match_Odds, 10);
             List<IWebElement> matches_rows = browser.FindElements(matches_Hockey).ToList();
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             foreach (var match_row in matches_rows)
             {
                 string[] matchTime = match_row.FindElement(match_Time).Text.Split(':',' ');            
                 Team local = new Team(match_row.FindElements(match_Teams)[0].Text , float.Parse(match_row.FindElements(match_Odds)[0].Text));
-                Team visiting = new Team(match_row.FindElements(match_Teams)[1].Text, float.Parse(match_row.FindElements(match_Odds)[2].Text));         
+                Team Road = new Team(match_row.FindElements(match_Teams)[1].Text, float.Parse(match_row.FindElements(match_Odds)[2].Text));         
                 DateTime matchDttm = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Convert.ToInt32(matchTime[0]), Convert.ToInt32(matchTime[1]), 0);
-                Match match = new Match(local, visiting, matchDttm, float.Parse(match_row.FindElements(match_Odds)[1].Text));
+                Match match = new Match(local, Road, matchDttm, float.Parse(match_row.FindElements(match_Odds)[1].Text));
 
                 matches.Add(match);
             }
