@@ -3,3 +3,6 @@ C:\Mefistofeles\Mefistofeles.Repositories\bin\Debug\Mefistofeles.Repositories.pd
 C:\Mefistofeles\Mefistofeles.Repositories\obj\Debug\Mefistofeles.Repositories.csproj.CoreCompileInputs.cache
 C:\Mefistofeles\Mefistofeles.Repositories\obj\Debug\Mefistofeles.Repositories.dll
 C:\Mefistofeles\Mefistofeles.Repositories\obj\Debug\Mefistofeles.Repositories.pdb
+C:\Mefistofeles\Mefistofeles.Repositories\bin\Debug\Dapper.dll
+C:\Mefistofeles\Mefistofeles.Repositories\bin\Debug\Dapper.xml
+C:\Mefistofeles\Mefistofeles.Repositories\obj\Debug\Mefistofeles.Repositories.csproj.CopyComplete

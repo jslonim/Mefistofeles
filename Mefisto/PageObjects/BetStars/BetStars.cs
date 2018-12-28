@@ -1,7 +1,7 @@
 ﻿using Mefistofeles.Config;
-using Mefistofeles.DTO;
 using Mefistofeles.PageObjects.Utils;
 using OpenQA.Selenium;
+using Repositories.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,10 +55,10 @@ namespace Mefistofeles.PageObjects.MisMarcadores
                 if (IsElementPresent(match_row,match_Time))
                 {
                     string[] matchTime = match_row.FindElement(match_Time).Text.Split(':', ' ', '\r');
-                    Team local = new Team(match_row.FindElements(match_Teams)[0].Text, float.Parse(match_row.FindElements(match_Odds)[0].Text));
-                    Team Road = new Team(match_row.FindElements(match_Teams)[1].Text, float.Parse(match_row.FindElements(match_Odds)[2].Text));
+                    Team local = new Team(match_row.FindElements(match_Teams)[0].Text, Convert.ToDouble(match_row.FindElements(match_Odds)[0].Text));
+                    Team Road = new Team(match_row.FindElements(match_Teams)[1].Text, Convert.ToDouble(match_row.FindElements(match_Odds)[2].Text));
                     DateTime matchDttm = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Convert.ToInt32(matchTime[0]), Convert.ToInt32(matchTime[1]), 0);
-                    Match match = new Match(local, Road, matchDttm, float.Parse(match_row.FindElements(match_Odds)[1].Text));
+                    Match match = new Match(local, Road, matchDttm, Convert.ToDouble(match_row.FindElements(match_Odds)[1].Text));
 
                     matches.Add(match);
                 }

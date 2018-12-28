@@ -60,9 +60,15 @@
     <Folder Include="Properties" />
     <Folder Include="Tables" />
     <Folder Include="Stored Procedures" />
+    <Folder Include="Stored Procedures\Match" />
+    <Folder Include="Stored Procedures\Team" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Matches.sql" />
     <Build Include="Tables\Teams.sql" />
+    <Build Include="Stored Procedures\Team\spInsertTeam.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MefistoDB.publish.xml" />
   </ItemGroup>
 </Project>

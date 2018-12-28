@@ -27,3 +27,5 @@ C:\Mefistofeles\Mefisto\bin\Debug\Mefistofeles.Repositories.dll
 C:\Mefistofeles\Mefisto\bin\Debug\Mefistofeles.Services.dll
 C:\Mefistofeles\Mefisto\bin\Debug\Mefistofeles.Repositories.pdb
 C:\Mefistofeles\Mefisto\bin\Debug\Mefistofeles.Services.pdb
+C:\Mefistofeles\Mefisto\bin\Debug\Dapper.dll
+C:\Mefistofeles\Mefisto\bin\Debug\Dapper.xml

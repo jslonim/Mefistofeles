@@ -59,8 +59,6 @@
     <Compile Include="Config\PageObjectBase.cs" />
     <Compile Include="Config\SeleniumBase.cs" />
     <Compile Include="Mefistofeles.cs" />
-    <Compile Include="DTO\Match.cs" />
-    <Compile Include="DTO\Team.cs" />
     <Compile Include="PageObjects\BetStars\BetStars.cs" />
     <Compile Include="PageObjects\SportsChatPlace\SportsChatPlace.cs" />
     <Compile Include="PageObjects\Utils\LeagueEnum.cs" />

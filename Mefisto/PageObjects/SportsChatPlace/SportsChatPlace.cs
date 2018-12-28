@@ -1,7 +1,7 @@
 ﻿using Mefistofeles.Config;
-using Mefistofeles.DTO;
 using Mefistofeles.PageObjects.Utils;
 using OpenQA.Selenium;
+using Repositories.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

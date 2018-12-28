@@ -1,8 +1,8 @@
 ﻿using Mefistofeles.Config;
 using Mefistofeles.PageObjects;
-using Mefistofeles.DTO;
 using Mefistofeles.PageObjects.MisMarcadores;
 using Mefistofeles.PageObjects.Utils;
+using Repositories.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +16,19 @@ namespace Mefistofeles
         public void Start()
         {
 
-            SportsEnum sport = SportsEnum.NHL;
+            //SportsEnum sport = SportsEnum.NHL;
 
-            BetStars games = new BetStars();
-            SportsChatPlace scp = new SportsChatPlace();
+            //BetStars games = new BetStars();
+            //SportsChatPlace scp = new SportsChatPlace();
 
-            List<Match> matchList = games.GetMatchesByLeague(sport);
-            scp.FillMatchesPicks(matchList, sport);
+            //List<Match> matchList = games.GetMatchesByLeague(sport);
+            //scp.FillMatchesPicks(matchList, sport);
 
-            browser.Close();
+            //browser.Close();
+
+            Team team = new Team("Inventado", 1.2);
+            Int64 cosa = TeamService.InsertTeam(team);
+
         }
     }
 }

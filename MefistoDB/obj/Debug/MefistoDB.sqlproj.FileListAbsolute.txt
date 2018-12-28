@@ -1,9 +1,5 @@
 C:\Mefistofeles\MefistoDB\bin\Debug\MefistoDB.dacpac
 C:\Mefistofeles\MefistoDB\bin\Debug\MefistoDB.dll
 C:\Mefistofeles\MefistoDB\bin\Debug\MefistoDB.pdb
-C:\Mefistofeles\MefistoDB\obj\Debug\Model.xml
-C:\Mefistofeles\MefistoDB\obj\Debug\refactor.xml
-C:\Mefistofeles\MefistoDB\obj\Debug\postdeploy.sql
-C:\Mefistofeles\MefistoDB\obj\Debug\predeploy.sql
 C:\Mefistofeles\MefistoDB\obj\Debug\MefistoDB.dll
 C:\Mefistofeles\MefistoDB\obj\Debug\MefistoDB.pdb
