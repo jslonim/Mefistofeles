@@ -16,7 +16,7 @@ namespace Mefistofeles
         public void Start()
         {
 
-            SportsEnum sport = SportsEnum.NHL;
+            SportsEnum sport = SportsEnum.NBA;
 
             BetStars games = new BetStars();
             SportsChatPlace scp = new SportsChatPlace();
