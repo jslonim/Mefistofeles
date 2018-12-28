@@ -18,12 +18,17 @@ namespace Mefistofeles.Config
         protected SeleniumBase()
         {
             browser = GetBrowser();
+           browser.Manage().Window.Maximize();
+
         }
 
         public IWebDriver GetBrowser()
         {
             if (_browser == null)
             {
+                //ChromeOptions option = new ChromeOptions();
+                //option.AddArgument("--headless");
+                //_browser = new ChromeDriver(option);
                 _browser = new ChromeDriver();
             }
 
