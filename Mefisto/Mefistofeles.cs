@@ -15,11 +15,14 @@ namespace Mefistofeles
     {
         public void Start()
         {
-            Hockey games = new Hockey();
+
+            SportsEnum sport = SportsEnum.NHL;
+
+            BetStars games = new BetStars();
             SportsChatPlace scp = new SportsChatPlace();
 
-            List<Match> matchList = games.GetMatchesByLeague(HockeyLeagueEnum.NHL);
-            scp.FillMatchesPicks(matchList,AmericanSportEnum.NHL);
+            List<Match> matchList = games.GetMatchesByLeague(sport);
+            scp.FillMatchesPicks(matchList, sport);
 
             browser.Close();
         }

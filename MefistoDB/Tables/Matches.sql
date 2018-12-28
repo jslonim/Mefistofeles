@@ -5,5 +5,6 @@
     [RoadTeam] BIGINT NOT NULL, 
     [TieOdss] FLOAT NULL, 
     [MatchDttm] DATETIME NOT NULL, 
-    [Pick] NVARCHAR(MAX) NOT NULL
+    [Pick] NVARCHAR(MAX) NOT NULL, 
+    [Sport] NVARCHAR(MAX) NOT NULL
 )

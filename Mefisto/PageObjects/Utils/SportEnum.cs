@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Mefistofeles.PageObjects.Utils
 {
-    public enum AmericanSportEnum
+    public enum SportsEnum
     {
         NHL = 1,
         NBA = 2,
         NFL = 3,
-        NBL = 4
+        NBL = 4,
+        Soccer = 5
     }
 }

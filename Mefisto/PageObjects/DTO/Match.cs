@@ -14,7 +14,7 @@ namespace Mefistofeles.PageObjects.DTO
         public float TieOdds{get;set;}
         public string Pick { get; set; }
         public string Expert { get; set; }
-
+        public string Sport { get; set; }
 
         public Match(Team local, Team road, DateTime matchDttm,float tieOdds = 0)
         {

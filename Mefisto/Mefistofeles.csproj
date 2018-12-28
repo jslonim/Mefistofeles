@@ -61,9 +61,9 @@
     <Compile Include="Mefistofeles.cs" />
     <Compile Include="PageObjects\DTO\Match.cs" />
     <Compile Include="PageObjects\DTO\Team.cs" />
-    <Compile Include="PageObjects\BetStars\Hockey.cs" />
+    <Compile Include="PageObjects\BetStars\BetStars.cs" />
     <Compile Include="PageObjects\SportsChatPlace\SportsChatPlace.cs" />
-    <Compile Include="PageObjects\Utils\HockeyLeagueEnum.cs" />
+    <Compile Include="PageObjects\Utils\LeagueEnum.cs" />
     <Compile Include="PageObjects\Utils\SportEnum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

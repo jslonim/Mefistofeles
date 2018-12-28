@@ -20,7 +20,7 @@ namespace Mefistofeles.PageObjects
         By articleTitle = By.CssSelector(".clearfix h1");
         By expert = By.CssSelector(".bg-blue");
 
-        public List<Match> FillMatchesPicks(List<Match> matchList, AmericanSportEnum sport)
+        public List<Match> FillMatchesPicks(List<Match> matchList, SportsEnum sport)
         {
             List<string> entriesLinks = new List<string>();
             List<Match> existingMatches = new List<Match>();
@@ -30,7 +30,7 @@ namespace Mefistofeles.PageObjects
 
             foreach (var entry in browser.FindElements(entries))
             {
-                string[] title = entry.FindElements(entryTitle)[0].Text.Split(new string[] { "-", "NHL" }, StringSplitOptions.None);
+                string[] title = entry.FindElements(entryTitle)[0].Text.Split(new string[] { "-", "NHL", "NBA", "NFL" , "MBL" , "Soccer" }, StringSplitOptions.None);
                 title[0] = title[0].Trim();
                 title[1] = title[1].Trim();
                 matchList[0].MatchDttm.Date.ToString("MM/dd/yy");
@@ -46,7 +46,7 @@ namespace Mefistofeles.PageObjects
             foreach (var link in entriesLinks)
             {
                 browser.Navigate().GoToUrl(link);
-                string[] title = browser.FindElements(articleTitle)[0].Text.Split(new string[] { "-", "NHL" }, StringSplitOptions.None);
+                string[] title = browser.FindElements(articleTitle)[0].Text.Split(new string[] { "-", "NHL", "NBA", "NFL", "MBL", "Soccer" }, StringSplitOptions.None);
                 title[0] = title[0].Trim();
                 title[1] = title[1].Trim();
                 WaitForPageLoad(20);
@@ -56,6 +56,7 @@ namespace Mefistofeles.PageObjects
                     var existingmatch = existingMatches.Single(x => title[0].Contains(x.Local.Name) && title[0].Contains(x.Road.Name) && title[1] == x.MatchDttm.Date.ToString("MM/dd/yy"));
                     existingmatch.Pick = browser.FindElement(matchPick).Text;
                     existingmatch.Expert = browser.FindElement(expert).Text.Split(new string[] { "'" }, StringSplitOptions.None)[0].ToLower();
+                    existingmatch.Sport = sport.ToString();
                 }
             }
 
