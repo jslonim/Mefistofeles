@@ -13,6 +13,8 @@ namespace Mefistofeles.PageObjects.DTO
         public DateTime MatchDttm { get; set; }
         public float TieOdds{get;set;}
         public string Pick { get; set; }
+        public string Expert { get; set; }
+
 
         public Match(Team local, Team road, DateTime matchDttm,float tieOdds = 0)
         {
