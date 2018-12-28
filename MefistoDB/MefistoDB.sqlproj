@@ -67,8 +67,12 @@
     <Build Include="Tables\Matches.sql" />
     <Build Include="Tables\Teams.sql" />
     <Build Include="Stored Procedures\Team\spInsertTeam.sql" />
+    <Build Include="Stored Procedures\Match\spInsertMatch.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MefistoDB.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="MefistoDB.refactorlog" />
   </ItemGroup>
 </Project>

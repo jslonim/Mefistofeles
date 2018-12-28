@@ -6,3 +6,4 @@ C:\Mefistofeles\Mefistofeles.Repositories\obj\Debug\Mefistofeles.Repositories.pd
 C:\Mefistofeles\Mefistofeles.Repositories\bin\Debug\Dapper.dll
 C:\Mefistofeles\Mefistofeles.Repositories\bin\Debug\Dapper.xml
 C:\Mefistofeles\Mefistofeles.Repositories\obj\Debug\Mefistofeles.Repositories.csproj.CopyComplete
+C:\Mefistofeles\Mefistofeles.Repositories\obj\Debug\Mefistofeles.Repositories.csprojAssemblyReference.cache

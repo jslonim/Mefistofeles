@@ -3,3 +3,4 @@ C:\Mefistofeles\MefistoDB\bin\Debug\MefistoDB.dll
 C:\Mefistofeles\MefistoDB\bin\Debug\MefistoDB.pdb
 C:\Mefistofeles\MefistoDB\obj\Debug\MefistoDB.dll
 C:\Mefistofeles\MefistoDB\obj\Debug\MefistoDB.pdb
+C:\Mefistofeles\MefistoDB\obj\Debug\MefistoDB.sqlprojAssemblyReference.cache

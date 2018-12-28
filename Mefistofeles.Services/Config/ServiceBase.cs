@@ -9,8 +9,8 @@ namespace Mefistofeles.Services.Config
 {
     public class ServiceBase
     {
-        public TeamRepository TeamRepository{get;set;}
-        public MatchRespository MatchRespository { get; set; }
+        protected TeamRepository TeamRepository{get;set;}
+        protected MatchRespository MatchRespository { get; set; }
 
         public ServiceBase()
         {

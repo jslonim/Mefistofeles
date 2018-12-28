@@ -16,7 +16,12 @@ namespace Repositories.DTO
         public string Pick { get; set; }
         public string Expert { get; set; }
         public string Sport { get; set; }
+        public string Result { get; set; }
+        public bool AfterTime { get; set; }
 
+        public Match()
+        {
+        }
 
         public Match(Team local, Team road, DateTime matchDttm, double tieOdds = 0)
         {
@@ -45,6 +50,20 @@ namespace Repositories.DTO
             Pick = pick;
             Expert = expert;
             Sport = sport;
+        }
+
+        public Match(Int64 id, Team local, Team road, DateTime matchDttm, string pick, string expert, string sport, string result,bool afterTime, double tieOdds = 0)
+        {
+            Id = Id;
+            Local = local;
+            Road = road;
+            MatchDttm = matchDttm;
+            TieOdds = tieOdds;
+            Pick = pick;
+            Expert = expert;
+            Sport = sport;
+            Result = result;
+            AfterTime = afterTime;
         }
 
 

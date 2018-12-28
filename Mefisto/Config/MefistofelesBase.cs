@@ -9,13 +9,13 @@ namespace Mefistofeles.Config
 {
     public class MefistofelesBase : SeleniumBase
     {
-        public TeamService TeamService { get; set; }
-        //public MatchService MatchService { get; set; }
+        protected TeamService TeamService { get; set; }
+        protected MatchService MatchService { get; set; }
 
         public MefistofelesBase()
         {
             TeamService = new TeamService();
-            //MatchRespository = new MatchRespository();
+            MatchService = new MatchService();
         }
     }
 }

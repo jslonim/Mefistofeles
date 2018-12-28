@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\ServiceBase.cs" />
+    <Compile Include="MatchService.cs" />
     <Compile Include="TeamService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
