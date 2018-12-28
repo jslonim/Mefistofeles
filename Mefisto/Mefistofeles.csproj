@@ -59,8 +59,8 @@
     <Compile Include="Config\PageObjectBase.cs" />
     <Compile Include="Config\SeleniumBase.cs" />
     <Compile Include="Mefistofeles.cs" />
-    <Compile Include="PageObjects\DTO\Match.cs" />
-    <Compile Include="PageObjects\DTO\Team.cs" />
+    <Compile Include="DTO\Match.cs" />
+    <Compile Include="DTO\Team.cs" />
     <Compile Include="PageObjects\BetStars\BetStars.cs" />
     <Compile Include="PageObjects\SportsChatPlace\SportsChatPlace.cs" />
     <Compile Include="PageObjects\Utils\LeagueEnum.cs" />
@@ -71,6 +71,19 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mefistofeles.Repositories\Mefistofeles.Repositories.csproj">
+      <Project>{c2bc28c1-ca66-41f6-abd3-46ee44778d60}</Project>
+      <Name>Mefistofeles.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mefistofeles.Services\Mefistofeles.Services.csproj">
+      <Project>{b1b94084-a407-4ee5-ba0a-51f872151035}</Project>
+      <Name>Mefistofeles.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.2.45.0\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.45.0\build\Selenium.WebDriver.ChromeDriver.targets')" />

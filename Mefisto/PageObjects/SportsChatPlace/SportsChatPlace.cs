@@ -1,5 +1,5 @@
 ﻿using Mefistofeles.Config;
-using Mefistofeles.PageObjects.DTO;
+using Mefistofeles.DTO;
 using Mefistofeles.PageObjects.Utils;
 using OpenQA.Selenium;
 using System;
@@ -59,7 +59,6 @@ namespace Mefistofeles.PageObjects
                     existingmatch.Sport = sport.ToString();
                 }
             }
-
             return existingMatches;
         }
     }

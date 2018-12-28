@@ -1,0 +1,9 @@
+C:\Mefistofeles\Mefistofeles.Services\bin\Debug\Mefistofeles.Services.dll
+C:\Mefistofeles\Mefistofeles.Services\bin\Debug\Mefistofeles.Services.pdb
+C:\Mefistofeles\Mefistofeles.Services\obj\Debug\Mefistofeles.Services.csprojAssemblyReference.cache
+C:\Mefistofeles\Mefistofeles.Services\obj\Debug\Mefistofeles.Services.csproj.CoreCompileInputs.cache
+C:\Mefistofeles\Mefistofeles.Services\obj\Debug\Mefistofeles.Services.dll
+C:\Mefistofeles\Mefistofeles.Services\obj\Debug\Mefistofeles.Services.pdb
+C:\Mefistofeles\Mefistofeles.Services\bin\Debug\Mefistofeles.Repositories.dll
+C:\Mefistofeles\Mefistofeles.Services\bin\Debug\Mefistofeles.Repositories.pdb
+C:\Mefistofeles\Mefistofeles.Services\obj\Debug\Mefistofeles.Services.csproj.CopyComplete

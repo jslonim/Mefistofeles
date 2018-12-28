@@ -23,3 +23,7 @@ C:\Mefistofeles\Mefisto\obj\Debug\Mefistofeles.csproj.CopyComplete
 C:\Mefistofeles\Mefisto\obj\Debug\Mefistofeles.exe
 C:\Mefistofeles\Mefisto\obj\Debug\Mefistofeles.pdb
 C:\Mefistofeles\Mefisto\obj\Debug\Mefistofeles.csprojAssemblyReference.cache
+C:\Mefistofeles\Mefisto\bin\Debug\Mefistofeles.Repositories.dll
+C:\Mefistofeles\Mefisto\bin\Debug\Mefistofeles.Services.dll
+C:\Mefistofeles\Mefisto\bin\Debug\Mefistofeles.Repositories.pdb
+C:\Mefistofeles\Mefisto\bin\Debug\Mefistofeles.Services.pdb

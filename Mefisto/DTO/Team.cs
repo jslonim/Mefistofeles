@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mefistofeles.PageObjects.DTO
+namespace Mefistofeles.DTO
 {
     public class Team
     {

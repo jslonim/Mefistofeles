@@ -1,6 +1,6 @@
 ﻿using Mefistofeles.Config;
 using Mefistofeles.PageObjects;
-using Mefistofeles.PageObjects.DTO;
+using Mefistofeles.DTO;
 using Mefistofeles.PageObjects.MisMarcadores;
 using Mefistofeles.PageObjects.Utils;
 using System;
@@ -16,7 +16,7 @@ namespace Mefistofeles
         public void Start()
         {
 
-            SportsEnum sport = SportsEnum.NBA;
+            SportsEnum sport = SportsEnum.NHL;
 
             BetStars games = new BetStars();
             SportsChatPlace scp = new SportsChatPlace();

@@ -1,0 +1,5 @@
+C:\Mefistofeles\Mefistofeles.Repositories\bin\Debug\Mefistofeles.Repositories.dll
+C:\Mefistofeles\Mefistofeles.Repositories\bin\Debug\Mefistofeles.Repositories.pdb
+C:\Mefistofeles\Mefistofeles.Repositories\obj\Debug\Mefistofeles.Repositories.csproj.CoreCompileInputs.cache
+C:\Mefistofeles\Mefistofeles.Repositories\obj\Debug\Mefistofeles.Repositories.dll
+C:\Mefistofeles\Mefistofeles.Repositories\obj\Debug\Mefistofeles.Repositories.pdb
