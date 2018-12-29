@@ -1,11 +1,12 @@
 ﻿CREATE PROCEDURE [dbo].[spInsertTeam]
 	@Name nvarchar(MAX),
-	@Odds decimal
+	@Odds decimal,
+	@CoversWinPercentage int
 AS
 BEGIN
-	INSERT INTO [dbo].[Teams](Name,Odds)
+	INSERT INTO [dbo].[Teams](Name,Odds,CoversWinPercentage)
 	VALUES
-	(@Name,@Odds)
+	(@Name,@Odds,@CoversWinPercentage)
 
 	SELECT @@IDENTITY
 END 

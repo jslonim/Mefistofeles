@@ -1,4 +1,5 @@
-﻿using Mefistofeles.Services;
+﻿using Mefistofeles.PageObjects;
+using Mefistofeles.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,15 @@ namespace Mefistofeles.Config
 {
     public class MefistofelesBase : SeleniumBase
     {
-        protected TeamService TeamService { get; set; }
-        protected MatchService MatchService { get; set; }
+        protected BetStars BetStars { get; set; }
+        protected SportsChatPlace SportsChatPlace { get; set; }
+        protected Covers Covers { get; set; }
 
         public MefistofelesBase()
         {
-            TeamService = new TeamService();
-            MatchService = new MatchService();
+            BetStars = new BetStars();
+            SportsChatPlace = new SportsChatPlace();
+            Covers = new Covers();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Mefistofeles.Services;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,18 @@ namespace Mefistofeles.Config
 {
     public class PageObjectBase : SeleniumBase
     {
-        public void WaitForPageLoad(int time)
+        protected TeamService TeamService { get; set; }
+        protected MatchService MatchService { get; set; }
+
+        public PageObjectBase()
         {
-            TimeSpan seconds = new TimeSpan(0, 0, 0, time, 0 );
+            TeamService = new TeamService();
+            MatchService = new MatchService();
+        }
+
+        public void WaitForPageLoad(int sec)
+        {
+            TimeSpan seconds = new TimeSpan(0, 0, 0, sec, 0 );
             WebDriverWait wait = new WebDriverWait(browser, seconds);
             wait.Until(d =>
             {

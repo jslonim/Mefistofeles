@@ -11,6 +11,8 @@ namespace Repositories.DTO
         public Int64 Id { get; set; }
         public string Name { get; set; }
         public double Odds { get; set; }
+        public int CoversWinPercentage { get; set; }
+
         public Team(string name, double odds = 0)
         {
             Name = name;

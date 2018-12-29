@@ -1,6 +1,5 @@
 ﻿using Mefistofeles.Config;
 using Mefistofeles.PageObjects;
-using Mefistofeles.PageObjects.MisMarcadores;
 using Mefistofeles.PageObjects.Utils;
 using Mefistofeles.Services;
 using Repositories.DTO;
@@ -16,15 +15,18 @@ namespace Mefistofeles
     {
         public void Start()
         {
+            //Select Sport
             SportsEnum sport = SportsEnum.NHL;
 
-            BetStars games = new BetStars();
-            SportsChatPlace scp = new SportsChatPlace();
-
-            List<Match> matchList = games.GetMatchesByLeague(sport);
-            scp.FillMatchesPicks(matchList, sport);
+            // Gets matches
+            List<Match> matchList = BetStars.GetMatchesByLeague(sport);
+            //Fills up expert picks
+            matchList = SportsChatPlace.FillMatchesPicks(matchList, sport);
+            //Fills up win percentage
+            matchList = Covers.FillCoversPercentages(matchList,sport);
 
             browser.Close();
+            Environment.Exit(0);
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Mefistofeles.PageObjects.MisMarcadores
+namespace Mefistofeles.PageObjects
 {
     public class BetStars : PageObjectBase
     {
