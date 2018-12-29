@@ -10,6 +10,8 @@ namespace Mefistofeles.Config
 {
     public class MefistofelesBase : SeleniumBase
     {
+        protected TeamService TeamService { get; set; }
+        protected MatchService MatchService { get; set; }
         protected BetStars BetStars { get; set; }
         protected SportsChatPlace SportsChatPlace { get; set; }
         protected Covers Covers { get; set; }
@@ -19,6 +21,8 @@ namespace Mefistofeles.Config
             BetStars = new BetStars();
             SportsChatPlace = new SportsChatPlace();
             Covers = new Covers();
+            TeamService = new TeamService();
+            MatchService = new MatchService();
         }
     }
 }

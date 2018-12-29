@@ -11,15 +11,6 @@ namespace Mefistofeles.Config
 {
     public class PageObjectBase : SeleniumBase
     {
-        protected TeamService TeamService { get; set; }
-        protected MatchService MatchService { get; set; }
-
-        public PageObjectBase()
-        {
-            TeamService = new TeamService();
-            MatchService = new MatchService();
-        }
-
         public void WaitForPageLoad(int sec)
         {
             TimeSpan seconds = new TimeSpan(0, 0, 0, sec, 0 );

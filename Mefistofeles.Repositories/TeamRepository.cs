@@ -18,6 +18,7 @@ namespace Mefistofeles.Repositories
 
             parameter.Add("@Name", team.Name, DbType.String, ParameterDirection.Input);
             parameter.Add("@Odds", team.Odds, DbType.Int64, ParameterDirection.Input);
+            parameter.Add("@CoversWinPercentage", team.CoversWinPercentage, DbType.Int32, ParameterDirection.Input);
 
             var id = connection.ExecuteScalar("spInsertTeam",
                 parameter,

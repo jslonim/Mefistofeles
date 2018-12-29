@@ -17,5 +17,13 @@ namespace Mefistofeles.Services
 
             MatchRespository.InsertMatch(match);
         }
+
+        public void InsertMatches(List<Match> matchList)
+        {
+            foreach (Match match in matchList)
+            {
+                InsertMatch(match);
+            }
+        }
     }
 }

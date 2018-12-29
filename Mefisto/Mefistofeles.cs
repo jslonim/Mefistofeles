@@ -20,11 +20,13 @@ namespace Mefistofeles
 
             // Gets matches
             List<Match> matchList = BetStars.GetMatchesByLeague(sport);
-            //Fills up expert picks
             matchList = SportsChatPlace.FillMatchesPicks(matchList, sport);
-            //Fills up win percentage
             matchList = Covers.FillCoversPercentages(matchList,sport);
-
+            
+            //Save in DB
+            MatchService.InsertMatches(matchList);
+            
+            //Close
             browser.Close();
             Environment.Exit(0);
         }
