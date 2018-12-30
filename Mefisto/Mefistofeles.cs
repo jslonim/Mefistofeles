@@ -25,10 +25,9 @@ namespace Mefistofeles
             
             //Save in DB
             MatchService.InsertMatches(matchList);
-            
+
             //Close
-            browser.Close();
-            Environment.Exit(0);
+            browser.Quit();
         }
     }
 }

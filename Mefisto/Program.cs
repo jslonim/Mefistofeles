@@ -11,6 +11,7 @@ namespace Mefistofeles
         static void Main(string[] args)
         {
             new Mefistofeles().Start();
+            Environment.Exit(0);
         }
     }
 }

@@ -17,9 +17,8 @@ namespace Mefistofeles.Config
 
         protected SeleniumBase()
         {
-            browser = GetBrowser();
+           browser = GetBrowser();
            browser.Manage().Window.Maximize();
-
         }
 
         public IWebDriver GetBrowser()
