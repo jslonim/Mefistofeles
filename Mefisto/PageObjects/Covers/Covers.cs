@@ -45,7 +45,7 @@ namespace Mefistofeles.PageObjects
         public List<Match> FillMatchesResults(List<Match> matches, SportsEnum sport)
         {
             URL = URL.Replace("{1}", sport.ToString());
-            URL = URL + "?selectedDate=" + matches[0].MatchDttm.Date.ToString("yyyy-MM-dd");
+            URL = URL + "?selectedDate=" + matches[0].MatchDttm.Date.AddDays(-1).ToString("yyyy-MM-dd");
             browser.Navigate().GoToUrl(URL);
             WaitForPageLoad(20);
 

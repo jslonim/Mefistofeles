@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[spInsertTeam]
 	@Name nvarchar(MAX),
-	@Odds decimal,
+	@Odds decimal(5,2),
 	@CoversWinPercentage int
 AS
 BEGIN

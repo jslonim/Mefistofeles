@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[spInsertMatch]
 	@LocalTeam bigint,
 	@RoadTeam bigint,
-	@TieOdds decimal,
+	@TieOdds decimal(5,2),
 	@MatchDttm datetime,
 	@Pick nvarchar(MAX),
 	@Sport nvarchar(MAX),

@@ -420,7 +420,8 @@ END]]></Value>
 						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
-									<Property Name="Precision" Value="18" />
+									<Property Name="Scale" Value="2" />
+									<Property Name="Precision" Value="5" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[decimal]" />
@@ -516,10 +517,10 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="500" />
+				<Property Name="Length" Value="505" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spInsertMatch]&#xD;&#xA;&#x9;@LocalTeam bigint,&#xD;&#xA;&#x9;@RoadTeam bigint,&#xD;&#xA;&#x9;@TieOdds decimal,&#xD;&#xA;&#x9;@MatchDttm datetime,&#xD;&#xA;&#x9;@Pick nvarchar(MAX),&#xD;&#xA;&#x9;@Sport nvarchar(MAX),&#xD;&#xA;&#x9;@Result nvarchar(MAX),&#xD;&#xA;&#x9;@AfterTime bit&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spInsertMatch]&#xD;&#xA;&#x9;@LocalTeam bigint,&#xD;&#xA;&#x9;@RoadTeam bigint,&#xD;&#xA;&#x9;@TieOdds decimal(5,2),&#xD;&#xA;&#x9;@MatchDttm datetime,&#xD;&#xA;&#x9;@Pick nvarchar(MAX),&#xD;&#xA;&#x9;@Sport nvarchar(MAX),&#xD;&#xA;&#x9;@Result nvarchar(MAX),&#xD;&#xA;&#x9;@AfterTime bit&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[spInsertTeam]">
@@ -579,7 +580,8 @@ END]]></Value>
 						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
-									<Property Name="Precision" Value="18" />
+									<Property Name="Scale" Value="2" />
+									<Property Name="Precision" Value="5" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[decimal]" />
@@ -612,10 +614,10 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="247" />
+				<Property Name="Length" Value="252" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spInsertTeam]&#xD;&#xA;&#x9;@Name nvarchar(MAX),&#xD;&#xA;&#x9;@Odds decimal,&#xD;&#xA;&#x9;@CoversWinPercentage int&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spInsertTeam]&#xD;&#xA;&#x9;@Name nvarchar(MAX),&#xD;&#xA;&#x9;@Odds decimal(5,2),&#xD;&#xA;&#x9;@CoversWinPercentage int&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Teams]">
