@@ -15,6 +15,7 @@ namespace Mefistofeles.PageObjects
         private By gameBoxes = By.CssSelector(".cmg_matchup_game_box");
         private By matchHeader = By.CssSelector(".cmg_matchup_header");
         private By teamWinPercentages = By.CssSelector(".cmg_matchup_list_odds_value");
+        private By matchWinner = By.CssSelector(".cmg_matchup_list_winner");
 
         private string URL = "https://www.covers.com/sports/{1}/matchups";
         public List<Match> FillCoversPercentages(List<Match> matches, SportsEnum sport)
@@ -37,6 +38,28 @@ namespace Mefistofeles.PageObjects
                 match.Road.CoversWinPercentage = percentages[0];
                 match.Local.CoversWinPercentage = percentages[1];
                 
+            }
+            return matches;
+        }
+
+        public List<Match> FillMatchesResults(List<Match> matches, SportsEnum sport)
+        {
+            URL = URL.Replace("{1}", sport.ToString());
+            URL = URL + "?selectedDate=" + matches[0].MatchDttm.Date.ToString("yyyy-MM-dd");
+            browser.Navigate().GoToUrl(URL);
+            WaitForPageLoad(20);
+
+            foreach (var match in matches)
+            {
+                IWebElement box = browser.FindElements(gameBoxes)
+                    .Single(x => match.Local.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at" }, StringSplitOptions.None)[0].Trim())
+                             || match.Local.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at" }, StringSplitOptions.None)[1].Trim())
+                             || match.Road.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at" }, StringSplitOptions.None)[0].Trim())
+                             || match.Road.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at" }, StringSplitOptions.None)[1].Trim())
+                           );
+
+                string winner = box.FindElement(matchWinner).GetAttribute("className").Split(' ')[0];
+                match.Result = winner.Contains("home") ? match.Local.Name : match.Road.Name;
             }
             return matches;
         }

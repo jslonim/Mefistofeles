@@ -60,7 +60,7 @@
     <Compile Include="Config\SeleniumBase.cs" />
     <Compile Include="Mefistofeles.cs" />
     <Compile Include="PageObjects\BetStars\BetStars.cs" />
-    <Compile Include="PageObjects\Covers.cs" />
+    <Compile Include="PageObjects\Covers\Covers.cs" />
     <Compile Include="PageObjects\SportsChatPlace\SportsChatPlace.cs" />
     <Compile Include="PageObjects\Utils\LeagueEnum.cs" />
     <Compile Include="PageObjects\Utils\SportEnum.cs" />
