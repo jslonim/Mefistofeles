@@ -24,10 +24,29 @@ namespace Mefistofeles.Repositories
             parameter.Add("@Sport", match.Sport, DbType.String, ParameterDirection.Input);
             parameter.Add("@Result", match.Result, DbType.String, ParameterDirection.Input);
             parameter.Add("@AfterTime", match.AfterTime, DbType.Boolean, ParameterDirection.Input);
-    
+
             connection.Execute("spInsertMatch",
                 parameter,
                 commandType: CommandType.StoredProcedure);
+        }
+
+        public List<Match> GetMatchesByDate(DateTime date)
+        {
+            //DynamicParameters parameter = new DynamicParameters();
+            //parameter.Add("@MatchDttm", date, DbType.DateTime, ParameterDirection.Input);
+            //return connection.Query<Match>("spGetMatchByDate", parameter, commandType: CommandType.StoredProcedure).ToList();
+
+            return connection.Query<Match, Team, Team, Match>(
+                 "spGetMatchByDate",
+                 (match, team, team2) =>
+                 {
+                     match.Local = team;
+                     match.Road = team;
+                     return match;
+                 },
+                 splitOn: "Id, Id2")
+                 .Distinct()
+                 .ToList();
         }
     }
 }

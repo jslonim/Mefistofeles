@@ -31,7 +31,7 @@ namespace Mefistofeles.Repositories
         {
             DynamicParameters parameter = new DynamicParameters();
             parameter.Add("@Id", id, DbType.Int32, ParameterDirection.Input);
-            return connection.Query<Team>("spGetTeamById",parameter, commandType: CommandType.StoredProcedure).ToList()[0];
+            return connection.QuerySingle<Team>("spGetTeamById",parameter, commandType: CommandType.StoredProcedure);
         }
     }
 }
