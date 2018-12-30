@@ -14,5 +14,10 @@ namespace Mefistofeles.Services
         {
             return TeamRepository.InsertTeam(team);
         }
+
+        public Team GetTeamById(int id)
+        {
+            return TeamRepository.GetTeamById(id);
+        }
     }
 }

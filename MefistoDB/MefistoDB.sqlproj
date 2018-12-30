@@ -68,6 +68,7 @@
     <Build Include="Tables\Teams.sql" />
     <Build Include="Stored Procedures\Team\spInsertTeam.sql" />
     <Build Include="Stored Procedures\Match\spInsertMatch.sql" />
+    <Build Include="Stored Procedures\Team\spGetTeamById.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MefistoDB.publish.xml" />

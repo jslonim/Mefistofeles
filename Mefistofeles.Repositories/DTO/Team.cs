@@ -13,17 +13,28 @@ namespace Repositories.DTO
         public double Odds { get; set; }
         public int CoversWinPercentage { get; set; }
 
+        public Team() {
+        }
+
         public Team(string name, double odds = 0)
         {
             Name = name;
             Odds = odds;
         }
 
-        public Team(Int64 id, string name, double odds = 0)
+        public Team(Int64 id, string name, double odds)
         {
             Id = id;
             Name = name;
             Odds = odds;
+        }
+
+        public Team(Int64 id, string name, double odds , int coversWinPercentage)
+        {
+            Id = id;
+            Name = name;
+            Odds = odds;
+            CoversWinPercentage = coversWinPercentage;
         }
     }
 }

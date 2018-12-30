@@ -3,7 +3,7 @@
 	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY, 
     [LocalTeam] BIGINT NOT NULL, 
     [RoadTeam] BIGINT NOT NULL, 
-    [TieOdds] FLOAT NULL, 
+    [TieOdds] DECIMAL(5, 2) NULL, 
     [MatchDttm] DATETIME NOT NULL, 
     [Pick] NVARCHAR(MAX) NOT NULL, 
     [Sport] NVARCHAR(MAX) NOT NULL, 

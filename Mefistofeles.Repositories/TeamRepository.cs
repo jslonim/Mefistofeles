@@ -26,5 +26,12 @@ namespace Mefistofeles.Repositories
 
             return Convert.ToInt64(id);
         }
+
+        public Team GetTeamById(int id)
+        {
+            DynamicParameters parameter = new DynamicParameters();
+            parameter.Add("@Id", id, DbType.Int32, ParameterDirection.Input);
+            return connection.Query<Team>("spGetTeamById",parameter, commandType: CommandType.StoredProcedure).ToList()[0];
+        }
     }
 }
