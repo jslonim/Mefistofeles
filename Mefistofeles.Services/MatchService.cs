@@ -25,5 +25,10 @@ namespace Mefistofeles.Services
                 InsertMatch(match);
             }
         }
+
+        public List<Match> GetMatchesByDate(DateTime date)
+        {
+            return MatchRespository.GetMatchesByDate(date);
+        }
     }
 }

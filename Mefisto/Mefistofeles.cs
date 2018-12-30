@@ -26,6 +26,10 @@ namespace Mefistofeles
             //Save in DB
             MatchService.InsertMatches(matchList);
 
+            ////Gets yesterday's matchs to complete scores
+            //List<Match> matchList = new List<Match>();
+            //matchList = MatchService.GetMatchesByDate(DateTime.Now);
+
             //Close
             browser.Quit();
         }

@@ -8,5 +8,6 @@
     [Pick] NVARCHAR(MAX) NOT NULL, 
     [Sport] NVARCHAR(MAX) NOT NULL, 
     [Result] NVARCHAR(MAX) NULL, 
-    [AfterTime] BIT NOT NULL
+    [AfterTime] BIT NULL, 
+    [Expert] NVARCHAR(MAX) NOT NULL
 )

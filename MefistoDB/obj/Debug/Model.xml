@@ -220,13 +220,29 @@
 				</Entry>
 				<Entry>
 					<Element Type="SqlSimpleColumn" Name="[dbo].[Matches].[AfterTime]">
-						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Matches].[Expert]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -444,7 +460,8 @@ BEGIN
 	Pick,
 	Sport, 
 	Result, 
-	AfterTime 
+	AfterTime,
+	Expert
 	)
 	VALUES
 	(
@@ -455,7 +472,8 @@ BEGIN
 	@Pick,
 	@Sport, 
 	@Result, 
-	@AfterTime 
+	@AfterTime,
+	@Expert
 	)
 
 	SELECT @@IDENTITY
@@ -491,6 +509,9 @@ END]]></Value>
 					<References Name="[dbo].[Matches].[AfterTime]" />
 				</Entry>
 				<Entry>
+					<References Name="[dbo].[Matches].[Expert]" />
+				</Entry>
+				<Entry>
 					<References Name="[dbo].[spInsertMatch].[@LocalTeam]" />
 				</Entry>
 				<Entry>
@@ -513,6 +534,9 @@ END]]></Value>
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[spInsertMatch].[@AfterTime]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spInsertMatch].[@Expert]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
@@ -641,6 +665,22 @@ END]]></Value>
 						</Relationship>
 					</Element>
 				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spInsertMatch].[@Expert]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
 			</Relationship>
 			<Relationship Name="Schema">
 				<Entry>
@@ -648,10 +688,10 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="505" />
+				<Property Name="Length" Value="549" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spInsertMatch]&#xD;&#xA;&#x9;@LocalTeam bigint,&#xD;&#xA;&#x9;@RoadTeam bigint,&#xD;&#xA;&#x9;@TieOdds decimal(5,2),&#xD;&#xA;&#x9;@MatchDttm datetime,&#xD;&#xA;&#x9;@Pick nvarchar(MAX),&#xD;&#xA;&#x9;@Sport nvarchar(MAX),&#xD;&#xA;&#x9;@Result nvarchar(MAX),&#xD;&#xA;&#x9;@AfterTime bit&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spInsertMatch]&#xD;&#xA;&#x9;@LocalTeam bigint,&#xD;&#xA;&#x9;@RoadTeam bigint,&#xD;&#xA;&#x9;@TieOdds decimal(5,2),&#xD;&#xA;&#x9;@MatchDttm datetime,&#xD;&#xA;&#x9;@Pick nvarchar(MAX),&#xD;&#xA;&#x9;@Sport nvarchar(MAX),&#xD;&#xA;&#x9;@Result nvarchar(MAX),&#xD;&#xA;&#x9;@AfterTime bit,&#xD;&#xA;&#x9;@Expert nvarchar(MAX)&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[spInsertTeam]">

@@ -6,7 +6,8 @@
 	@Pick nvarchar(MAX),
 	@Sport nvarchar(MAX),
 	@Result nvarchar(MAX),
-	@AfterTime bit
+	@AfterTime bit,
+	@Expert nvarchar(MAX)
 AS
 BEGIN
 	INSERT INTO [dbo].[Matches]
@@ -18,7 +19,8 @@ BEGIN
 	Pick,
 	Sport, 
 	Result, 
-	AfterTime 
+	AfterTime,
+	Expert
 	)
 	VALUES
 	(
@@ -29,7 +31,8 @@ BEGIN
 	@Pick,
 	@Sport, 
 	@Result, 
-	@AfterTime 
+	@AfterTime,
+	@Expert
 	)
 
 	SELECT @@IDENTITY
