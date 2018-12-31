@@ -18,6 +18,19 @@ namespace Mefistofeles.Services
             MatchRespository.InsertMatch(match);
         }
 
+        public void UpdateMatchResult(Match match)
+        {
+            MatchRespository.UpdateMatchResult(match);
+        }
+
+        public void UpdateMatchesResults(List<Match> matches)
+        {
+            foreach (var match in matches)
+            {
+                MatchRespository.UpdateMatchResult(match);
+            }        
+        }
+
         public void InsertMatches(List<Match> matchList)
         {
             foreach (Match match in matchList)

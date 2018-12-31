@@ -791,6 +791,100 @@ END]]></Value>
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spInsertTeam]&#xD;&#xA;&#x9;@Name nvarchar(MAX),&#xD;&#xA;&#x9;@Odds decimal(5,2),&#xD;&#xA;&#x9;@CoversWinPercentage int&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[spUpdateMatchResult]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	UPDATE [dbo].[Matches]	
+	SET Result = @Result, 
+		AfterTime = @AfterTime
+	WHERE Id = @Id
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Matches]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Matches].[Result]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateMatchResult].[@Result]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Matches].[AfterTime]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateMatchResult].[@AfterTime]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Matches].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spUpdateMatchResult].[@Id]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateMatchResult].[@Id]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bigint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateMatchResult].[@Result]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spUpdateMatchResult].[@AfterTime]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="210" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spUpdateMatchResult]&#xD;&#xA;&#x9;@Id bigint,&#xD;&#xA;&#x9;@Result nvarchar(MAX),&#xD;&#xA;&#x9;@AfterTime bit&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Teams]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">

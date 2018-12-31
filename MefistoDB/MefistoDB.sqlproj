@@ -70,6 +70,7 @@
     <Build Include="Stored Procedures\Match\spInsertMatch.sql" />
     <Build Include="Stored Procedures\Team\spGetTeamById.sql" />
     <Build Include="Stored Procedures\Match\spGetMatchesByDate.sql" />
+    <Build Include="Stored Procedures\Match\spUpdateMatchResult.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MefistoDB.publish.xml" />

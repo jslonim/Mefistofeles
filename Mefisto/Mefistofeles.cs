@@ -27,8 +27,10 @@ namespace Mefistofeles
             MatchService.InsertMatches(matchList);
 
             ////Gets yesterday's matchs to complete scores
+
             //List<Match> matchList = new List<Match>();
             //matchList = MatchService.GetMatchesByDate(DateTime.Now);
+            //MatchService.UpdateMatchesResults(matchList);
 
             //Close
             browser.Quit();

@@ -16,6 +16,7 @@ namespace Mefistofeles.PageObjects
         private By matchHeader = By.CssSelector(".cmg_matchup_header");
         private By teamWinPercentages = By.CssSelector(".cmg_matchup_list_odds_value");
         private By matchWinner = By.CssSelector(".cmg_matchup_list_winner");
+        private By matchStatus = By.CssSelector(".cmg_matchup_list_status");
 
         private string URL = "https://www.covers.com/sports/{1}/matchups";
         public List<Match> FillCoversPercentages(List<Match> matches, SportsEnum sport)
@@ -60,6 +61,7 @@ namespace Mefistofeles.PageObjects
 
                 string winner = box.FindElement(matchWinner).GetAttribute("className").Split(' ')[0];
                 match.Result = winner.Contains("home") ? match.Local.Name : match.Road.Name;
+                match.AfterTime = box.FindElement(matchStatus).Text == "Final" ? false : true;
             }
             return matches;
         }

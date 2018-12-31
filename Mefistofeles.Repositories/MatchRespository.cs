@@ -31,6 +31,19 @@ namespace Mefistofeles.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
+        public void UpdateMatchResult(Match match)
+        {
+            DynamicParameters parameter = new DynamicParameters();
+
+            parameter.Add("@Id", match.Local.Id, DbType.Int64, ParameterDirection.Input);
+            parameter.Add("@Result", match.Expert, DbType.String, ParameterDirection.Input);
+            parameter.Add("@AfterTime", match.AfterTime, DbType.Binary, ParameterDirection.Input);
+
+            connection.Execute("spUpdateMatchResult",
+                parameter,
+                commandType: CommandType.StoredProcedure);
+        }
+
         public List<Match> GetMatchesByDate(DateTime date)
         {
             DynamicParameters parameter = new DynamicParameters();
