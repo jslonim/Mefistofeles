@@ -43,10 +43,10 @@ namespace Mefistofeles.PageObjects
             return matches;
         }
 
-        public List<Match> FillMatchesResults(List<Match> matches, SportsEnum sport)
+        public List<Match> FillMatchesResults(List<Match> matches)
         {
-            URL = URL.Replace("{1}", sport.ToString());
-            URL = URL + "?selectedDate=" + matches[0].MatchDttm.Date.AddDays(-1).ToString("yyyy-MM-dd");
+            URL = URL.Replace("{1}", matches[0].Sport);
+            URL = URL + "?selectedDate=" + matches[0].MatchDttm.Date.ToString("yyyy-MM-dd");
             browser.Navigate().GoToUrl(URL);
             WaitForPageLoad(20);
 

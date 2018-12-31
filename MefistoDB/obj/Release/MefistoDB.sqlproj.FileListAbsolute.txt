@@ -1,0 +1,9 @@
+C:\Mefistofeles\MefistoDB\bin\Release\MefistoDB.dacpac
+C:\Mefistofeles\MefistoDB\bin\Release\MefistoDB.dll
+C:\Mefistofeles\MefistoDB\bin\Release\MefistoDB.pdb
+C:\Mefistofeles\MefistoDB\obj\Release\Model.xml
+C:\Mefistofeles\MefistoDB\obj\Release\refactor.xml
+C:\Mefistofeles\MefistoDB\obj\Release\postdeploy.sql
+C:\Mefistofeles\MefistoDB\obj\Release\predeploy.sql
+C:\Mefistofeles\MefistoDB\obj\Release\MefistoDB.dll
+C:\Mefistofeles\MefistoDB\obj\Release\MefistoDB.pdb

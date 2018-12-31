@@ -1,0 +1,9 @@
+C:\Mefistofeles\Mefistofeles.Repositories\bin\Release\Mefistofeles.Repositories.dll
+C:\Mefistofeles\Mefistofeles.Repositories\bin\Release\Mefistofeles.Repositories.pdb
+C:\Mefistofeles\Mefistofeles.Repositories\bin\Release\Dapper.dll
+C:\Mefistofeles\Mefistofeles.Repositories\bin\Release\Dapper.xml
+C:\Mefistofeles\Mefistofeles.Repositories\obj\Release\Mefistofeles.Repositories.csprojAssemblyReference.cache
+C:\Mefistofeles\Mefistofeles.Repositories\obj\Release\Mefistofeles.Repositories.csproj.CoreCompileInputs.cache
+C:\Mefistofeles\Mefistofeles.Repositories\obj\Release\Mefistofeles.Repositories.csproj.CopyComplete
+C:\Mefistofeles\Mefistofeles.Repositories\obj\Release\Mefistofeles.Repositories.dll
+C:\Mefistofeles\Mefistofeles.Repositories\obj\Release\Mefistofeles.Repositories.pdb

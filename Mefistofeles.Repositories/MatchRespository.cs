@@ -35,26 +35,27 @@ namespace Mefistofeles.Repositories
         {
             DynamicParameters parameter = new DynamicParameters();
 
-            parameter.Add("@Id", match.Local.Id, DbType.Int64, ParameterDirection.Input);
-            parameter.Add("@Result", match.Expert, DbType.String, ParameterDirection.Input);
-            parameter.Add("@AfterTime", match.AfterTime, DbType.Binary, ParameterDirection.Input);
+            parameter.Add("@Id", match.Id, DbType.Int64, ParameterDirection.Input);
+            parameter.Add("@Result", match.Result, DbType.String, ParameterDirection.Input);
+            parameter.Add("@AfterTime", match.AfterTime, DbType.Boolean, ParameterDirection.Input);
 
             connection.Execute("spUpdateMatchResult",
                 parameter,
                 commandType: CommandType.StoredProcedure);
         }
 
-        public List<Match> GetMatchesByDate(DateTime date)
+        public List<Match> GetMatchesByDate(DateTime date, string sport)
         {
             DynamicParameters parameter = new DynamicParameters();
             parameter.Add("@MatchDttm", date, DbType.DateTime, ParameterDirection.Input);
+            parameter.Add("@Sport", sport, DbType.String, ParameterDirection.Input);
 
             return connection.Query<Match, Team, Team, Match>(
                  "spGetMatchesByDate",
                  (match, team, team2) =>
                  {
                      match.Local = team;
-                     match.Road = team;
+                     match.Road = team2;
                      return match;
                  },
                  parameter,              

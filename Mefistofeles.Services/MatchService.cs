@@ -39,9 +39,9 @@ namespace Mefistofeles.Services
             }
         }
 
-        public List<Match> GetMatchesByDate(DateTime date)
+        public List<Match> GetMatchesByDate(DateTime date, string sport)
         {
-            return MatchRespository.GetMatchesByDate(date);
+            return MatchRespository.GetMatchesByDate(date,sport);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Mefistofeles
             //Select Sport
             SportsEnum sport = SportsEnum.NHL;
 
-            // Gets matches
+            //Gets matches
             List<Match> matchList = BetStars.GetMatchesByLeague(sport);
             matchList = SportsChatPlace.FillMatchesPicks(matchList, sport);
             matchList = Covers.FillCoversPercentages(matchList, sport);
@@ -27,13 +27,13 @@ namespace Mefistofeles
             MatchService.InsertMatches(matchList);
 
             ////Gets yesterday's matchs to complete scores
-
-            //List<Match> matchList = new List<Match>();
-            //matchList = MatchService.GetMatchesByDate(DateTime.Now);
-            //MatchService.UpdateMatchesResults(matchList);
+            matchList = MatchService.GetMatchesByDate(DateTime.Now.AddDays(-1), sport.ToString());
+            matchList = Covers.FillMatchesResults(matchList);
+            MatchService.UpdateMatchesResults(matchList);
 
             //Close
             browser.Quit();
         }
     }
 }
+

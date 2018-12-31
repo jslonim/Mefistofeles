@@ -1,5 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[spGetMatchesByDate]
 	@MatchDttm datetime
+   ,@Sport nvarchar(MAX)
 AS
 BEGIN
 	SELECT
@@ -25,7 +26,8 @@ BEGIN
 	  ON M.LocalTeam = T1.Id 
 	  INNER JOIN [dbo].[Teams] T2
 	  ON M.RoadTeam = T2.Id
-	  WHERE CAST(M.MatchDttm AS DATE) = CAST(@MatchDttm AS DATE)
+	  WHERE CAST(M.MatchDttm AS DATE) = CAST(@MatchDttm AS DATE) 
+	  AND M.Sport = @Sport
 END 
 GO
 	

@@ -284,7 +284,8 @@ BEGIN
 	  ON M.LocalTeam = T1.Id 
 	  INNER JOIN [dbo].[Teams] T2
 	  ON M.RoadTeam = T2.Id
-	  WHERE CAST(M.MatchDttm AS DATE) = CAST(@MatchDttm AS DATE)
+	  WHERE CAST(M.MatchDttm AS DATE) = CAST(@MatchDttm AS DATE) 
+	  AND M.Sport = @Sport
 END]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -358,6 +359,9 @@ END]]></Value>
 				<Entry>
 					<References Name="[dbo].[spGetMatchesByDate].[@MatchDttm]" />
 				</Entry>
+				<Entry>
+					<References Name="[dbo].[spGetMatchesByDate].[@Sport]" />
+				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
 				<Entry>
@@ -375,6 +379,22 @@ END]]></Value>
 						</Relationship>
 					</Element>
 				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spGetMatchesByDate].[@Sport]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
 			</Relationship>
 			<Relationship Name="Schema">
 				<Entry>
@@ -382,10 +402,10 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="664" />
+				<Property Name="Length" Value="716" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spGetMatchesByDate]&#xD;&#xA;&#x9;@MatchDttm datetime&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spGetMatchesByDate]&#xD;&#xA;&#x9;@MatchDttm datetime&#xD;&#xA;   ,@Sport nvarchar(MAX)&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[spGetTeamById]">
