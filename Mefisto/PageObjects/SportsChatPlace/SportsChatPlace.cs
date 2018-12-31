@@ -57,7 +57,7 @@ namespace Mefistofeles.PageObjects
 
                     if (existingMatches.Any(x => title[0].Contains(x.Local.Name) && title[0].Contains(x.Road.Name) && title[1] == x.MatchDttm.Date.ToString("MM/dd/yy")))
                     {
-                        var existingmatch = existingMatches.Single(x => title[0].Contains(x.Local.Name) && title[0].Contains(x.Road.Name) && title[1] == x.MatchDttm.Date.ToString("MM/dd/yy"));
+                        var existingmatch = existingMatches.First(x => title[0].Contains(x.Local.Name) && title[0].Contains(x.Road.Name) && title[1] == x.MatchDttm.Date.ToString("MM/dd/yy"));
                         existingmatch.Pick = browser.FindElement(matchPick).Text;
                         existingmatch.Expert = browser.FindElement(expert).Text.Split(new string[] { "'" }, StringSplitOptions.None)[0].ToLower();
                         existingmatch.Sport = sport.ToString();
