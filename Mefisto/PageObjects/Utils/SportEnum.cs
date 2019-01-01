@@ -11,7 +11,5 @@ namespace Mefistofeles.PageObjects.Utils
         NHL = 1,
         NBA = 2,
         NFL = 3,
-        NBL = 4,
-        Soccer = 5
     }
 }

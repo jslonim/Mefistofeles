@@ -15,9 +15,16 @@ namespace Mefistofeles
     {
         public void Start()
         {
-            //Select Sport
-            SportsEnum sport = SportsEnum.NHL;
+            ColectAndBet(SportsEnum.NHL);
+            ColectAndBet(SportsEnum.NBA);
+            ColectAndBet(SportsEnum.NFL);
 
+            //Close
+            browser.Quit();
+        }
+
+        private void ColectAndBet(SportsEnum sport)
+        {
             //Gets matches
             List<Match> matchList = BetStars.GetMatchesByLeague(sport);
             matchList = SportsChatPlace.FillMatchesPicks(matchList, sport);
@@ -30,9 +37,6 @@ namespace Mefistofeles
             matchList = MatchService.GetMatchesByDate(DateTime.Now.AddDays(-1), sport.ToString());
             matchList = Covers.FillMatchesResults(matchList);
             MatchService.UpdateMatchesResults(matchList);
-
-            //Close
-            browser.Quit();
         }
     }
 }
