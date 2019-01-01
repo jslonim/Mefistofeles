@@ -19,7 +19,7 @@ namespace Mefistofeles
             ColectAndBet(SportsEnum.NBA);
             ColectAndBet(SportsEnum.NFL);
 
-            //Close
+            //Close program
             browser.Quit();
         }
 
@@ -37,7 +37,32 @@ namespace Mefistofeles
             matchList = MatchService.GetMatchesByDate(DateTime.Now.AddDays(-1), sport.ToString());
             matchList = Covers.FillMatchesResults(matchList);
             MatchService.UpdateMatchesResults(matchList);
+
         }
+
+        //private void ColectAndBet(SportsEnum sport)
+        //{
+        //    try
+        //    {
+        //        //Gets matches
+        //        List<Match> matchList = BetStars.GetMatchesByLeague(sport);
+        //        matchList = SportsChatPlace.FillMatchesPicks(matchList, sport);
+        //        matchList = Covers.FillCoversPercentages(matchList, sport);
+
+        //        //Save in DB
+        //        MatchService.InsertMatches(matchList);
+
+        //        ////Gets yesterday's matchs to complete scores
+        //        matchList = MatchService.GetMatchesByDate(DateTime.Now.AddDays(-1), sport.ToString());
+        //        matchList = Covers.FillMatchesResults(matchList);
+        //        MatchService.UpdateMatchesResults(matchList);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        MefistofelesUtils.SendExceptionEmail(e.ToString(), sport);
+        //        throw e;                
+        //    }
+        //}
     }
 }
 
