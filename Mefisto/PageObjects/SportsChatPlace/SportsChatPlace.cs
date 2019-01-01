@@ -38,12 +38,12 @@ namespace Mefistofeles.PageObjects
                     title[0] = title[0].Trim();
                     title[1] = title[1].Trim();
                     matchList[0].MatchDttm.Date.ToString("MM/dd/yy");
-                    bool matchExsit = matchList.Any(x => title[0].Contains(x.Local.Name) && title[0].Contains(x.Road.Name) && title[1] == x.MatchDttm.Date.ToString("MM/dd/yy"));
+                    bool matchExsit = matchList.Any(x => title[0].Contains(x.Local.Name) && title[0].Contains(x.Road.Name) && (title[1] == x.MatchDttm.Date.ToString("MM/dd/yy") || title[1] == x.MatchDttm.Date.ToString("M/d/yy")));
 
                     if (matchExsit)
                     {
                         entriesLinks.Add(entry.FindElements(entryTitle)[0].GetAttribute("href"));
-                        existingMatches.Add(matchList.First(x => title[0].Contains(x.Local.Name) && title[0].Contains(x.Road.Name) && title[1] == x.MatchDttm.Date.ToString("MM/dd/yy")));
+                        existingMatches.Add(matchList.First(x => title[0].Contains(x.Local.Name) && title[0].Contains(x.Road.Name) && (title[1] == x.MatchDttm.Date.ToString("MM/dd/yy") || title[1] == x.MatchDttm.Date.ToString("M/d/yy"))));
                     }
                 }
 
@@ -55,9 +55,9 @@ namespace Mefistofeles.PageObjects
                     title[1] = title[1].Trim();
                     WaitForPageLoad(20);
 
-                    if (existingMatches.Any(x => title[0].Contains(x.Local.Name) && title[0].Contains(x.Road.Name) && title[1] == x.MatchDttm.Date.ToString("MM/dd/yy")))
+                    if (existingMatches.Any(x => title[0].Contains(x.Local.Name) && title[0].Contains(x.Road.Name) && (title[1] == x.MatchDttm.Date.ToString("MM/dd/yy") || title[1] == x.MatchDttm.Date.ToString("M/d/yy"))))
                     {
-                        var existingmatch = existingMatches.First(x => title[0].Contains(x.Local.Name) && title[0].Contains(x.Road.Name) && title[1] == x.MatchDttm.Date.ToString("MM/dd/yy"));
+                        var existingmatch = existingMatches.First(x => title[0].Contains(x.Local.Name) && title[0].Contains(x.Road.Name) && (title[1] == x.MatchDttm.Date.ToString("MM/dd/yy") || title[1] == x.MatchDttm.Date.ToString("M/d/yy")));
                         existingmatch.Pick = browser.FindElement(matchPick).Text;
                         existingmatch.Expert = browser.FindElement(expert).Text.Split(new string[] { "'" }, StringSplitOptions.None)[0].ToLower();
                         existingmatch.Sport = sport.ToString();

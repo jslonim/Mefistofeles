@@ -13,7 +13,7 @@ namespace Mefistofeles.PageObjects
     public class Covers : PageObjectBase
     {
         private By gameBoxes = By.CssSelector(".cmg_matchup_game_box");
-        private By matchHeader = By.CssSelector(".cmg_matchup_header");
+        private By matchHeader = By.CssSelector(".cmg_matchup_header_team_names");
         private By teamWinPercentages = By.CssSelector(".cmg_matchup_list_odds_value");
         private By matchWinner = By.CssSelector(".cmg_matchup_list_winner");
         private By matchStatus = By.CssSelector(".cmg_matchup_list_status");
@@ -28,17 +28,19 @@ namespace Mefistofeles.PageObjects
             foreach (var match in matches)
             {
                 IWebElement box = browser.FindElements(gameBoxes)
-                    .First(x=> match.Local.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at" }, StringSplitOptions.None)[0].Trim()) 
-                             || match.Local.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at" }, StringSplitOptions.None)[1].Trim())
-                             || match.Road.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at" }, StringSplitOptions.None)[0].Trim())
-                             || match.Road.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at" }, StringSplitOptions.None)[1].Trim())
+                    .FirstOrDefault(x=> match.Local.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at","vs" }, StringSplitOptions.None)[0].Trim()) 
+                             || match.Local.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[1].Trim())
+                             || match.Road.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[0].Trim())
+                             || match.Road.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[1].Trim())
                            );
 
-                int[] percentages = box.FindElements(teamWinPercentages).Select(x => Convert.ToInt32(x.Text.Replace('%',' '))).ToArray();
+                if (box != null)
+                {
+                    int[] percentages = box.FindElements(teamWinPercentages).Select(x => Convert.ToInt32(x.Text.Replace('%', ' '))).ToArray();
 
-                match.Road.CoversWinPercentage = percentages[0];
-                match.Local.CoversWinPercentage = percentages[1];
-                
+                    match.Road.CoversWinPercentage = percentages[0];
+                    match.Local.CoversWinPercentage = percentages[1];
+                }              
             }
             return matches;
         }
@@ -53,7 +55,7 @@ namespace Mefistofeles.PageObjects
             foreach (var match in matches)
             {
                 IWebElement box = browser.FindElements(gameBoxes)
-                    .Single(x => match.Local.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at" }, StringSplitOptions.None)[0].Trim())
+                    .First(x => match.Local.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at" }, StringSplitOptions.None)[0].Trim())
                              || match.Local.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at" }, StringSplitOptions.None)[1].Trim())
                              || match.Road.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at" }, StringSplitOptions.None)[0].Trim())
                              || match.Road.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at" }, StringSplitOptions.None)[1].Trim())

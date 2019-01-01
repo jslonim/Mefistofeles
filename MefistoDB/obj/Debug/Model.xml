@@ -257,6 +257,114 @@
 				</Entry>
 			</Relationship>
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[spGetCompletedMatches]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SELECT 
+	   	   M.[Id]
+		  ,CAST(M.MatchDttm AS DATE) AS 'Date'  
+		  ,CONVERT(TIME(0), M.MatchDttm) AS 'Time'
+		  ,M.[Sport]
+		  ,T1.[Name] AS 'LocalTeam'
+		  ,T2.[Name] AS 'RoadTeam'
+		  ,T1.[Odds] AS 'LocalOdds'
+		  ,M.[TieOdds]
+		  ,T2.[Odds] AS 'RoadOdds'
+		  ,T1.[CoversWinPercentage] AS 'LocalWinPct'
+		  ,T2.[CoversWinPercentage] AS 'RoadWinPct'
+		  ,M.[Pick]
+		  ,M.[Result]
+		  ,M.[AfterTime]
+   	  FROM [dbo].[Matches] M
+	  INNER JOIN [dbo].[Teams] T1
+	  ON M.LocalTeam = T1.Id 
+	  INNER JOIN [dbo].[Teams] T2
+	  ON M.RoadTeam = T2.Id
+	  WHERE Result IS NOT NULL
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Matches]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Teams]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Matches].[LocalTeam]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Teams].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Matches].[RoadTeam]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Teams].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Matches].[Id]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[date]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Matches].[MatchDttm]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[time]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Matches].[Sport]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Teams].[Name]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Teams].[Name]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Teams].[Odds]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Matches].[TieOdds]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Teams].[Odds]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Teams].[CoversWinPercentage]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Teams].[CoversWinPercentage]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Matches].[Pick]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Matches].[Result]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Matches].[AfterTime]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Matches].[Result]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="673" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spGetCompletedMatches]&#xD;&#xA;&#x9;--@Id bigint&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[spGetMatchesByDate]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[

@@ -72,6 +72,7 @@
     <Build Include="Stored Procedures\Match\spGetMatchesByDate.sql" />
     <Build Include="Stored Procedures\Match\spUpdateMatchResult.sql" />
     <Build Include="Stored Procedures\Match\spGetPendingMatches.sql" />
+    <Build Include="Stored Procedures\Match\spGetCompletedMatches.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MefistoDB.publish.xml" />
