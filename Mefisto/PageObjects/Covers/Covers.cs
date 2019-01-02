@@ -23,24 +23,21 @@ namespace Mefistofeles.PageObjects
         {
             URL = URL.Replace("{1}", sport.ToString());
             browser.Navigate().GoToUrl(URL);
-            WaitForPageLoad(20);
+            WaitForPageLoad(30);
 
             foreach (var match in matches)
             {
                 IWebElement box = browser.FindElements(gameBoxes)
-                    .FirstOrDefault(x=> match.Local.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at","vs" }, StringSplitOptions.None)[0].Trim()) 
+                    .First(x=> match.Local.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at","vs" }, StringSplitOptions.None)[0].Trim()) 
                              || match.Local.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[1].Trim())
                              || match.Road.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[0].Trim())
                              || match.Road.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[1].Trim())
                            );
 
-                if (box != null)
-                {
-                    int[] percentages = box.FindElements(teamWinPercentages).Select(x => Convert.ToInt32(x.Text.Replace('%', ' '))).ToArray();
+                    int[] percentages = box.FindElements(teamWinPercentages).Select(x => x.Text != "-" ? Convert.ToInt32(x.Text.Replace('%', ' ')) : 0).ToArray();
 
                     match.Road.CoversWinPercentage = percentages[0];
-                    match.Local.CoversWinPercentage = percentages[1];
-                }              
+                    match.Local.CoversWinPercentage = percentages[1];        
             }
             return matches;
         }
@@ -50,15 +47,15 @@ namespace Mefistofeles.PageObjects
             URL = URL.Replace("{1}", matches[0].Sport);
             URL = URL + "?selectedDate=" + matches[0].MatchDttm.Date.ToString("yyyy-MM-dd");
             browser.Navigate().GoToUrl(URL);
-            WaitForPageLoad(20);
+            WaitForPageLoad(30);
 
             foreach (var match in matches)
             {
                 IWebElement box = browser.FindElements(gameBoxes)
-                    .First(x => match.Local.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at" }, StringSplitOptions.None)[0].Trim())
-                             || match.Local.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at" }, StringSplitOptions.None)[1].Trim())
-                             || match.Road.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at" }, StringSplitOptions.None)[0].Trim())
-                             || match.Road.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at" }, StringSplitOptions.None)[1].Trim())
+                    .First(x => match.Local.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[0].Trim())
+                             || match.Local.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[1].Trim())
+                             || match.Road.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[0].Trim())
+                             || match.Road.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[1].Trim())
                            );
 
                 string winner = box.FindElement(matchWinner).GetAttribute("className").Split(' ')[0];

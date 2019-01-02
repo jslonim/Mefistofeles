@@ -17,7 +17,6 @@ namespace Mefistofeles
         {
             ColectAndBet(SportsEnum.NHL);
             ColectAndBet(SportsEnum.NBA);
-            ColectAndBet(SportsEnum.NFL);
 
             //Close program
             browser.Quit();
