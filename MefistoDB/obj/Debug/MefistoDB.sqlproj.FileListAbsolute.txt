@@ -7,3 +7,4 @@ C:\Mefistofeles\MefistoDB\obj\Debug\Model.xml
 C:\Mefistofeles\MefistoDB\obj\Debug\refactor.xml
 C:\Mefistofeles\MefistoDB\obj\Debug\postdeploy.sql
 C:\Mefistofeles\MefistoDB\obj\Debug\predeploy.sql
+C:\Mefistofeles\MefistoDB\obj\Debug\MefistoDB.sqlprojAssemblyReference.cache

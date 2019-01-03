@@ -15,7 +15,7 @@ namespace Mefistofeles
     {
         public void Start()
         {
-            ColectAndBet(SportsEnum.NHL);
+            //ColectAndBet(SportsEnum.NHL);
             ColectAndBet(SportsEnum.NBA);
 
             //Close program

@@ -13,22 +13,19 @@ namespace Mefistofeles.PageObjects
 {
     public class SportsChatPlace : PageObjectBase
     {      
-        By entries = By.CssSelector(".sports-a-cell");
-        By entryTitle = By.CssSelector("a");
-        By matchPick = By.CssSelector("h3.block");
-        By articleTitle = By.CssSelector(".clearfix h1");
-        By expert = By.CssSelector(".bg-blue");
+        By entries = By.CssSelector(".article-container");
+        By entryTitle = By.CssSelector(".article-title a");
+        By matchPick = By.CssSelector(".article-pick div");
+        By articleTitle = By.CssSelector(".article-title");
+        By expert = By.CssSelector(".article-author-name");
 
         public List<Match> FillMatchesPicks(List<Match> matchList, SportsEnum sport)
         {
             List<Match> existingMatches = new List<Match>();
 
-            for (int i = 1; i <= 2; i++)
-            {
-                string URL = "https://sportschatplace.com/{1}-picks/?page={2}";
+                string URL = "https://sportschatplace.com/{1}-picks/";
                 List<string> entriesLinks = new List<string>();
                 URL = URL.Replace("{1}", sport.ToString());
-                URL = URL.Replace("{2}", i.ToString());
                 browser.Navigate().GoToUrl(URL);
                 WaitForPageLoad(20);
 
@@ -58,13 +55,13 @@ namespace Mefistofeles.PageObjects
                     if (existingMatches.Any(x => title[0].Contains(x.Local.Name) && title[0].Contains(x.Road.Name) && (title[1] == x.MatchDttm.Date.ToString("MM/dd/yy") || title[1] == x.MatchDttm.Date.ToString("M/d/yy"))))
                     {
                         var existingmatch = existingMatches.First(x => title[0].Contains(x.Local.Name) && title[0].Contains(x.Road.Name) && (title[1] == x.MatchDttm.Date.ToString("MM/dd/yy") || title[1] == x.MatchDttm.Date.ToString("M/d/yy")));
-                        existingmatch.Pick = browser.FindElement(matchPick).Text;
+                        existingmatch.Pick = browser.FindElements(matchPick)[1].Text;
                         existingmatch.Expert = browser.FindElement(expert).Text.Split(new string[] { "'" }, StringSplitOptions.None)[0].ToLower();
                         existingmatch.Sport = sport.ToString();
                     }
                 }
 
-            }
+            
 
             return existingMatches;
         }
