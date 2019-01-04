@@ -55,7 +55,7 @@ namespace Mefistofeles.PageObjects
             Thread.Sleep(1000);
             foreach (var match_row in matches_rows)
             {
-                if (IsElementPresent(match_row,match_Time))
+                if (IsElementPresent(match_row,match_Time) && match_row.FindElements(match_Odds)[0].Text != "OTB" && match_row.FindElements(match_Odds)[1].Text != "OTB")
                 {
                     string[] matchTime = match_row.FindElement(match_Time).Text.Split(':', ' ', '\r');
                     Team local = new Team(match_row.FindElements(match_Teams)[0].Text, Convert.ToDouble(match_row.FindElements(match_Odds)[0].Text));
