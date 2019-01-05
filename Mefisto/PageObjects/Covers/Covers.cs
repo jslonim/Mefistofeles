@@ -18,9 +18,10 @@ namespace Mefistofeles.PageObjects
         private By matchWinner = By.CssSelector(".cmg_matchup_list_winner");
         private By matchStatus = By.CssSelector(".cmg_matchup_list_status");
 
-        private string URL = "https://www.covers.com/sports/{1}/matchups";
+
         public List<Match> FillCoversPercentages(List<Match> matches, SportsEnum sport)
         {
+            string URL = "https://www.covers.com/sports/{1}/matchups";
             URL = URL.Replace("{1}", sport.ToString());
             browser.Navigate().GoToUrl(URL);
             WaitForPageLoad(30);
@@ -28,22 +29,23 @@ namespace Mefistofeles.PageObjects
             foreach (var match in matches)
             {
                 IWebElement box = browser.FindElements(gameBoxes)
-                    .First(x=> match.Local.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at","vs" }, StringSplitOptions.None)[0].Trim()) 
+                    .First(x => match.Local.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[0].Trim())
                              || match.Local.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[1].Trim())
                              || match.Road.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[0].Trim())
                              || match.Road.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[1].Trim())
                            );
 
-                    int[] percentages = box.FindElements(teamWinPercentages).Select(x => x.Text != "-" ? Convert.ToInt32(x.Text.Replace('%', ' ')) : 0).ToArray();
+                int[] percentages = box.FindElements(teamWinPercentages).Select(x => x.Text != "-" ? Convert.ToInt32(x.Text.Replace('%', ' ')) : 0).ToArray();
 
-                    match.Road.CoversWinPercentage = percentages[0];
-                    match.Local.CoversWinPercentage = percentages[1];        
+                match.Road.CoversWinPercentage = percentages[0];
+                match.Local.CoversWinPercentage = percentages[1];
             }
             return matches;
         }
 
         public List<Match> FillMatchesResults(List<Match> matches)
         {
+            string URL = "https://www.covers.com/sports/{1}/matchups";
             URL = URL.Replace("{1}", matches[0].Sport);
             URL = URL + "?selectedDate=" + matches[0].MatchDttm.Date.ToString("yyyy-MM-dd");
             browser.Navigate().GoToUrl(URL);
