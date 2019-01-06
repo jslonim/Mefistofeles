@@ -19,6 +19,10 @@ namespace Mefistofeles.PageObjects
         private By matches_Rows2 = By.CssSelector("Section.afEvt");
         private By match_Teams = By.CssSelector(".event-schedule-participants-name");
         private By match_Time = By.CssSelector(".match-time");
+        private By txt_UserID = By.Id("userID");
+        private By txt_Password = By.Id("password");
+        private By btn_Login = By.Id("loginButton");
+        private By btn_Popup_Close = By.CssSelector(".previous");
         private By match_Odds;
 
         public List<Match> GetMatchesByLeague(SportsEnum sport)
@@ -79,5 +83,29 @@ namespace Mefistofeles.PageObjects
             return matches;
         }
 
+        public void Login()
+        {
+            User user = LoadUserAndPass();
+            browser.FindElement(txt_UserID).SendKeys(user.UserName);
+            browser.FindElement(txt_Password).SendKeys(user.Password);
+            browser.FindElement(btn_Login).Click();
+            WaitForPageLoad(20);
+            WaitUntilElementClickable(match_Time);
+            Thread.Sleep(5000);
+
+        }
+
+        public void BetMatches(List<Match> matchList)
+        {
+            URL = "https://www.betstars.com/espanol/#/ice_hockey/competitions/4719984";
+            browser.Navigate().GoToUrl(URL);
+            WaitForPageLoad(20);
+            WaitUntilElementClickable(match_Time);
+            Thread.Sleep(5000);
+
+            Login();
+            browser.FindElement(btn_Popup_Close).Click();
+
+        }
     }
 }

@@ -129,3 +129,6 @@ C:\Mefistofeles\Mefisto\bin\Debug\Polly.dll
 C:\Mefistofeles\Mefisto\bin\Debug\Polly.pdb
 C:\Mefistofeles\Mefisto\bin\Debug\Polly.xml
 C:\Mefistofeles\Mefisto\obj\Debug\Mefistofeles.exe.config
+C:\Mefistofeles\Mefisto\bin\Debug\Newtonsoft.Json.dll
+C:\Mefistofeles\Mefisto\bin\Debug\Newtonsoft.Json.pdb
+C:\Mefistofeles\Mefisto\bin\Debug\Newtonsoft.Json.xml

@@ -22,6 +22,8 @@ namespace Mefistofeles
             TryRetry(() => ColectMatches(SportsEnum.NHL));
             TryRetry(() => UpdatesLastMatches(SportsEnum.NHL));
 
+            //BetStars.BetMatches(new List<Match>());
+
             //Close program
             browser.Quit();
         }

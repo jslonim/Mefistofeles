@@ -1,8 +1,10 @@
 ﻿using Mefistofeles.Services;
+using Newtonsoft.Json;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -118,6 +120,15 @@ namespace Mefistofeles.Config
             catch (NoSuchElementException)
             {
                 return false;
+            }
+        }
+
+        public User LoadUserAndPass()
+        {
+            using (StreamReader r = new StreamReader("../../Config/UserData.json"))
+            {
+                string json = r.ReadToEnd();
+                return JsonConvert.DeserializeObject<User>(json);
             }
         }
 
