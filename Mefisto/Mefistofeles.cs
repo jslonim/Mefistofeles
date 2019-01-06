@@ -2,7 +2,6 @@
 using Mefistofeles.PageObjects;
 using Mefistofeles.PageObjects.Utils;
 using Mefistofeles.Services;
-using Polly;
 using Repositories.DTO;
 using System;
 using System.Collections.Generic;

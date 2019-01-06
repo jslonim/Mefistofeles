@@ -1,6 +1,5 @@
 ﻿using Mefistofeles.PageObjects;
 using Mefistofeles.Services;
-using Polly;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,12 +26,25 @@ namespace Mefistofeles.Config
             MatchService = new MatchService();
         }
 
-        public void TryRetry<T>(Func<T> action, int retryCount = 3)
+        public void TryRetry<T>( Func<T> operation, int times = 3)
         {
-            Policy
-              .Handle<Exception>()
-              .WaitAndRetry(3, retryAttempt => TimeSpan.FromSeconds(retryCount))
-              .Execute(() => action());
+            var attempts = 0;
+            do
+            {
+                try
+                {
+                    attempts++;
+                    operation();
+                    break; 
+                }
+                catch (Exception ex)
+                {
+                    if (attempts == times)
+                        throw;
+
+                    Thread.Sleep(3000);
+                }
+            } while(true);
         }
     }
 }
