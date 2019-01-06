@@ -41,6 +41,7 @@ namespace Mefistofeles.Config
                 {
                     if (attempts == times)
                         throw;
+                    //MefistofelesUtils.SendExceptionEmail(e.ToString(), sport); 
 
                     Thread.Sleep(3000);
                 }

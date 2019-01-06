@@ -50,12 +50,6 @@ namespace Mefistofeles
 
             return null;
         }
-
-        //MefistofelesUtils.SendExceptionEmail(e.ToString(), sport); 
-        //ColectMatches(SportsEnum.NHL);
-        //UpdatesLastMatches(SportsEnum.NHL);
-        //ColectMatches(SportsEnum.NBA);
-        //UpdatesLastMatches(SportsEnum.NBA);
     }
 }
 
