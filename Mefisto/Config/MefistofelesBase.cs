@@ -1,9 +1,11 @@
 ﻿using Mefistofeles.PageObjects;
 using Mefistofeles.Services;
+using Polly;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Mefistofeles.Config
@@ -23,6 +25,14 @@ namespace Mefistofeles.Config
             Covers = new Covers();
             TeamService = new TeamService();
             MatchService = new MatchService();
+        }
+
+        public void TryRetry<T>(Func<T> action, int retryCount = 3)
+        {
+            Policy
+              .Handle<Exception>()
+              .WaitAndRetry(3, retryAttempt => TimeSpan.FromSeconds(retryCount))
+              .Execute(() => action());
         }
     }
 }

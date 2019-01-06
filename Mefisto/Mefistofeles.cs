@@ -2,9 +2,11 @@
 using Mefistofeles.PageObjects;
 using Mefistofeles.PageObjects.Utils;
 using Mefistofeles.Services;
+using Polly;
 using Repositories.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,14 +17,16 @@ namespace Mefistofeles
     {
         public void Start()
         {
-            ColectAndBet(SportsEnum.NHL);
-            ColectAndBet(SportsEnum.NBA);
+            TryRetry(() => ColectMatches(SportsEnum.NHL));
+            TryRetry(() => UpdatesLastMatches(SportsEnum.NHL));
+            TryRetry(() => ColectMatches(SportsEnum.NHL));
+            TryRetry(() => UpdatesLastMatches(SportsEnum.NHL));
 
             //Close program
             browser.Quit();
         }
 
-        private void ColectAndBet(SportsEnum sport)
+        private object ColectMatches(SportsEnum sport)
         {
             //Gets matches
             List<Match> matchList = BetStars.GetMatchesByLeague(sport);
@@ -32,36 +36,25 @@ namespace Mefistofeles
             //Save in DB
             MatchService.InsertMatches(matchList);
 
-            ////Gets yesterday's matchs to complete scores
-            matchList = MatchService.GetMatchesByDate(DateTime.Now.AddDays(-1), sport.ToString());
-            matchList = Covers.FillMatchesResults(matchList);
-            MatchService.UpdateMatchesResults(matchList);
-
+            return null;
         }
 
-        //private void ColectAndBet(SportsEnum sport)
-        //{
-        //    try
-        //    {
-        //        //Gets matches
-        //        List<Match> matchList = BetStars.GetMatchesByLeague(sport);
-        //        matchList = SportsChatPlace.FillMatchesPicks(matchList, sport);
-        //        matchList = Covers.FillCoversPercentages(matchList, sport);
+        private object UpdatesLastMatches(SportsEnum sport)
+        {
+            ////Gets yesterday's matchs to complete scores
+            List<Match> matchList = MatchService.GetMatchesByDate(DateTime.Now.AddDays(-1), sport.ToString());
+            matchList = Covers.FillMatchesResults(matchList);
 
-        //        //Save in DB
-        //        MatchService.InsertMatches(matchList);
+            MatchService.UpdateMatchesResults(matchList);
 
-        //        ////Gets yesterday's matchs to complete scores
-        //        matchList = MatchService.GetMatchesByDate(DateTime.Now.AddDays(-1), sport.ToString());
-        //        matchList = Covers.FillMatchesResults(matchList);
-        //        MatchService.UpdateMatchesResults(matchList);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        MefistofelesUtils.SendExceptionEmail(e.ToString(), sport);
-        //        throw e;                
-        //    }
-        //}
+            return null;
+        }
+
+        //MefistofelesUtils.SendExceptionEmail(e.ToString(), sport); 
+        //ColectMatches(SportsEnum.NHL);
+        //UpdatesLastMatches(SportsEnum.NHL);
+        //ColectMatches(SportsEnum.NBA);
+        //UpdatesLastMatches(SportsEnum.NBA);
     }
 }
 
