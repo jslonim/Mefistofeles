@@ -47,6 +47,7 @@ namespace Mefistofeles
             List<Match> matchList = MatchService.GetMatchesByDate(DateTime.Now.AddDays(-1), sport.ToString());
             matchList = Covers.FillMatchesResults(matchList);
 
+            //Save in DB
             MatchService.UpdateMatchesResults(matchList);
 
             return null;

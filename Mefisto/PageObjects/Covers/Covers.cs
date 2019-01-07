@@ -80,9 +80,11 @@ namespace Mefistofeles.PageObjects
             foreach (var match in matches)
             {
                 IWebElement rowLocal = browser.FindElements(standingRows)
+                .Where(y => y.FindElements(standingCells).Count > 2)
                 .First(x => match.Local.Name.Contains(x.FindElements(standingCells)[1].Text.Trim()));
 
                 IWebElement rowRoad = browser.FindElements(standingRows)
+                .Where(y => y.FindElements(standingCells).Count > 2)
                 .First(x => match.Road.Name.Contains(x.FindElements(standingCells)[1].Text.Trim()));
 
                 match.Local.Standing = Convert.ToInt32(rowLocal.FindElements(standingCells)[0].Text);
