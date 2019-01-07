@@ -2,7 +2,7 @@
 	@Id int
 AS
 BEGIN
-	SELECT T.Id, T.Name,T.Odds,T.CoversWinPercentage 
+	SELECT T.Id, T.Name,T.Odds,T.CoversWinPercentage,T.Standing
 	FROM [dbo].[Teams] T
 	WHERE T.Id = @Id
 END 

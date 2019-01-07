@@ -12,6 +12,7 @@ namespace Repositories.DTO
         public string Name { get; set; }
         public double Odds { get; set; }
         public int CoversWinPercentage { get; set; }
+        public int Standing { get; set; }
 
         public Team() {
         }
@@ -35,6 +36,16 @@ namespace Repositories.DTO
             Name = name;
             Odds = odds;
             CoversWinPercentage = coversWinPercentage;
+        }
+
+
+        public Team(Int64 id, string name, double odds, int coversWinPercentage, int standing)
+        {
+            Id = id;
+            Name = name;
+            Odds = odds;
+            CoversWinPercentage = coversWinPercentage;
+            Standing = standing;
         }
     }
 }

@@ -628,7 +628,7 @@ END]]></Value>
 			<Property Name="BodyScript">
 				<Value><![CDATA[
 BEGIN
-	SELECT T.Id, T.Name,T.Odds,T.CoversWinPercentage 
+	SELECT T.Id, T.Name,T.Odds,T.CoversWinPercentage,T.Standing
 	FROM [dbo].[Teams] T
 	WHERE T.Id = @Id
 END]]></Value>
@@ -649,6 +649,9 @@ END]]></Value>
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Teams].[CoversWinPercentage]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Teams].[Standing]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[spGetTeamById].[@Id]" />
@@ -677,7 +680,7 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="158" />
+				<Property Name="Length" Value="168" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spGetTeamById]&#xD;&#xA;&#x9;@Id int&#xD;&#xA;AS" />
@@ -934,9 +937,9 @@ END]]></Value>
 			<Property Name="BodyScript">
 				<Value><![CDATA[
 BEGIN
-	INSERT INTO [dbo].[Teams](Name,Odds,CoversWinPercentage)
+	INSERT INTO [dbo].[Teams](Name,Odds,CoversWinPercentage,Standing)
 	VALUES
-	(@Name,@Odds,@CoversWinPercentage)
+	(@Name,@Odds,@CoversWinPercentage,@Standing)
 
 	SELECT @@IDENTITY
 END]]></Value>
@@ -956,6 +959,9 @@ END]]></Value>
 					<References Name="[dbo].[Teams].[CoversWinPercentage]" />
 				</Entry>
 				<Entry>
+					<References Name="[dbo].[Teams].[Standing]" />
+				</Entry>
+				<Entry>
 					<References Name="[dbo].[spInsertTeam].[@Name]" />
 				</Entry>
 				<Entry>
@@ -963,6 +969,9 @@ END]]></Value>
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[spInsertTeam].[@CoversWinPercentage]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spInsertTeam].[@Standing]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
@@ -1014,6 +1023,21 @@ END]]></Value>
 						</Relationship>
 					</Element>
 				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spInsertTeam].[@Standing]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
 			</Relationship>
 			<Relationship Name="Schema">
 				<Entry>
@@ -1021,10 +1045,10 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="252" />
+				<Property Name="Length" Value="288" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spInsertTeam]&#xD;&#xA;&#x9;@Name nvarchar(MAX),&#xD;&#xA;&#x9;@Odds decimal(5,2),&#xD;&#xA;&#x9;@CoversWinPercentage int&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[spInsertTeam]&#xD;&#xA;&#x9;@Name nvarchar(MAX),&#xD;&#xA;&#x9;@Odds decimal(5,2),&#xD;&#xA;&#x9;@CoversWinPercentage int,&#xD;&#xA;&#x9;@Standing int&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[spUpdateMatchResult]">
@@ -1179,6 +1203,21 @@ END]]></Value>
 				</Entry>
 				<Entry>
 					<Element Type="SqlSimpleColumn" Name="[dbo].[Teams].[CoversWinPercentage]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Teams].[Standing]">
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">

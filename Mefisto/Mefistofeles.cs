@@ -33,6 +33,7 @@ namespace Mefistofeles
             List<Match> matchList = BetStars.GetMatchesByLeague(sport);
             matchList = SportsChatPlace.FillMatchesPicks(matchList, sport);
             matchList = Covers.FillCoversPercentages(matchList, sport);
+            matchList = Covers.FillStandings(matchList, sport);
 
             //Save in DB
             MatchService.InsertMatches(matchList);

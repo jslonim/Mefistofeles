@@ -17,6 +17,8 @@ namespace Mefistofeles.PageObjects
         private By teamWinPercentages = By.CssSelector(".cmg_matchup_list_odds_value");
         private By matchWinner = By.CssSelector(".cmg_matchup_list_winner");
         private By matchStatus = By.CssSelector(".cmg_matchup_list_status");
+        private By standingRows = By.CssSelector("tr");
+        private By standingCells = By.CssSelector("td");
 
 
         public List<Match> FillCoversPercentages(List<Match> matches, SportsEnum sport)
@@ -64,6 +66,29 @@ namespace Mefistofeles.PageObjects
                 match.Result = winner.Contains("home") ? match.Local.Name : match.Road.Name;
                 match.AfterTime = box.FindElement(matchStatus).Text == "Final" ? false : true;
             }
+            return matches;
+        }
+
+        public List<Match> FillStandings(List<Match> matches, SportsEnum sport)
+        {
+            string URL = "https://www.covers.com/Sports/{1}/standings/conference";
+            
+            URL = URL.Replace("{1}", sport.ToString());
+            browser.Navigate().GoToUrl(URL);
+            WaitForPageLoad(30);
+
+            foreach (var match in matches)
+            {
+                IWebElement rowLocal = browser.FindElements(standingRows)
+                .First(x => match.Local.Name.Contains(x.FindElements(standingCells)[1].Text.Trim()));
+
+                IWebElement rowRoad = browser.FindElements(standingRows)
+                .First(x => match.Road.Name.Contains(x.FindElements(standingCells)[1].Text.Trim()));
+
+                match.Local.Standing = Convert.ToInt32(rowLocal.FindElements(standingCells)[0].Text);
+                match.Road.Standing = Convert.ToInt32(rowRoad.FindElements(standingCells)[0].Text);
+            }
+
             return matches;
         }
     }
