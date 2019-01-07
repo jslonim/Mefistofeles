@@ -13,7 +13,7 @@ namespace Mefistofeles.PageObjects
 {
     public class SportsChatPlace : PageObjectBase
     {      
-        By entries = By.CssSelector(".article-container");
+        By entries = By.CssSelector(".grid-main .article-container");
         By entryTitle = By.CssSelector(".article-title a");
         By matchPick = By.CssSelector(".article-pick div");
         By articleTitle = By.CssSelector(".article-title");
@@ -23,7 +23,7 @@ namespace Mefistofeles.PageObjects
         {
             List<Match> existingMatches = new List<Match>();
 
-                string URL = "https://sportschatplace.com/{1}-picks/";
+                string URL = "https://sportschatplace.com/picks/{1}";
                 List<string> entriesLinks = new List<string>();
                 URL = URL.Replace("{1}", sport.ToString());
                 browser.Navigate().GoToUrl(URL);
