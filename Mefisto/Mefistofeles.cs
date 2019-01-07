@@ -18,8 +18,8 @@ namespace Mefistofeles
         {
             TryRetry(() => ColectMatches(SportsEnum.NHL));
             TryRetry(() => UpdatesLastMatches(SportsEnum.NHL));
-            TryRetry(() => ColectMatches(SportsEnum.NHL));
-            TryRetry(() => UpdatesLastMatches(SportsEnum.NHL));
+            TryRetry(() => ColectMatches(SportsEnum.NBA));
+            TryRetry(() => UpdatesLastMatches(SportsEnum.NBA));
 
             //BetStars.BetMatches(new List<Match>());
 
