@@ -81,11 +81,15 @@ namespace Mefistofeles.PageObjects
             {
                 IWebElement rowLocal = browser.FindElements(standingRows)
                 .Where(y => y.FindElements(standingCells).Count > 2)
-                .First(x => match.Local.Name.Contains(x.FindElements(standingCells)[1].Text.Trim()));
+                .First(x => match.Local.Name.Contains(
+                    x.FindElements(standingCells)[1].Text.Trim().Split(' ').Count() == 1 ? x.FindElements(standingCells)[1].Text.Trim() : x.FindElements(standingCells)[1].Text.Trim().Split(' ')[1]
+                    ));
 
                 IWebElement rowRoad = browser.FindElements(standingRows)
                 .Where(y => y.FindElements(standingCells).Count > 2)
-                .First(x => match.Road.Name.Contains(x.FindElements(standingCells)[1].Text.Trim()));
+                .First(x => match.Road.Name.Contains(
+                    x.FindElements(standingCells)[1].Text.Trim().Split(' ').Count() == 1 ? x.FindElements(standingCells)[1].Text.Trim() : x.FindElements(standingCells)[1].Text.Trim().Split(' ')[1]
+                    ));
 
                 match.Local.Standing = Convert.ToInt32(rowLocal.FindElements(standingCells)[0].Text);
                 match.Road.Standing = Convert.ToInt32(rowRoad.FindElements(standingCells)[0].Text);
