@@ -23,6 +23,7 @@ namespace Mefistofeles.PageObjects
         private By txt_Password = By.Id("password");
         private By btn_Login = By.Id("loginButton");
         private By btn_Popup_Close = By.CssSelector(".previous");
+        private By lbl_Account_Balance = By.CssSelector("#accountBalance a");
         private By match_Odds;
 
         public List<Match> GetMatchesByLeague(SportsEnum sport)
@@ -59,7 +60,7 @@ namespace Mefistofeles.PageObjects
             Thread.Sleep(1000);
             foreach (var match_row in matches_rows)
             {
-                if (IsElementPresent(match_row,match_Time) && match_row.FindElements(match_Odds)[0].Text != "OTB" && match_row.FindElements(match_Odds)[1].Text != "OTB")
+                if (IsElementPresent(match_row, match_Time) && match_row.FindElements(match_Odds)[0].Text != "OTB" && match_row.FindElements(match_Odds)[1].Text != "OTB")
                 {
                     string[] matchTime = match_row.FindElement(match_Time).Text.Split(':', ' ', '\r');
                     Team local = new Team(match_row.FindElements(match_Teams)[0].Text, Convert.ToDouble(match_row.FindElements(match_Odds)[0].Text));
@@ -72,7 +73,7 @@ namespace Mefistofeles.PageObjects
                     {
                         road = new Team(match_row.FindElements(match_Teams)[1].Text, Convert.ToDouble(match_row.FindElements(match_Odds)[1].Text));
                     }
-                    
+
                     DateTime matchDttm = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Convert.ToInt32(matchTime[0]), Convert.ToInt32(matchTime[1]), 0);
                     Match match = new Match(local, road, matchDttm, Convert.ToDouble(match_row.FindElements(match_Odds)[1].Text));
 
@@ -97,15 +98,33 @@ namespace Mefistofeles.PageObjects
 
         public void BetMatches(List<Match> matchList)
         {
-            URL = "https://www.betstars.com/espanol/#/ice_hockey/competitions/4719984";
-            browser.Navigate().GoToUrl(URL);
-            WaitForPageLoad(20);
-            WaitUntilElementClickable(match_Time);
-            Thread.Sleep(5000);
+            if (Convert.ToDouble(browser.FindElement(lbl_Account_Balance).Text.Split(new string[] { "USD" }, StringSplitOptions.None)[0]) >= 400.00)
+            {
+                URL = "https://www.betstars.com/espanol/#/ice_hockey/competitions/4719984";
+                browser.Navigate().GoToUrl(URL);
+                WaitForPageLoad(20);
+                WaitUntilElementClickable(match_Time);
+                Thread.Sleep(5000);
 
-            Login();
-            browser.FindElement(btn_Popup_Close).Click();
+                Login();
+                WaitUntilElementClickable(btn_Popup_Close);
+                browser.FindElement(btn_Popup_Close).Click();
+            }
+        }
 
+        private bool isValidMatch(Match match)
+        {
+            if
+            (
+                (!match.Pick.ToLower().Contains("over") && !match.Pick.ToLower().Contains("under")) &&
+                (match.Local.CoversWinPercentage > 70)|| match.Road.CoversWinPercentage > 70 &&
+                (match.Local.Odds > 1.80 && match.Road.Odds > 1.80)                
+            )
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
