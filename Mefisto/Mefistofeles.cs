@@ -16,10 +16,11 @@ namespace Mefistofeles
     {
         public void Start()
         {
-            TryRetry(() => ColectMatches(SportsEnum.NHL));
-            TryRetry(() => UpdatesLastMatches(SportsEnum.NHL));
-            TryRetry(() => ColectMatches(SportsEnum.NBA));
-            TryRetry(() => UpdatesLastMatches(SportsEnum.NBA));
+            //TryRetry(() => ColectAndBetMatches(SportsEnum.NHL));
+            ColectAndBetMatches(SportsEnum.NHL);
+            //TryRetry(() => UpdatesLastMatches(SportsEnum.NHL));
+            //TryRetry(() => ColectAndBetMatches(SportsEnum.NBA));
+            //TryRetry(() => UpdatesLastMatches(SportsEnum.NBA));
 
             //BetStars.BetMatches(new List<Match>());
 
@@ -27,16 +28,17 @@ namespace Mefistofeles
             browser.Quit();
         }
 
-        private object ColectMatches(SportsEnum sport)
+        private object ColectAndBetMatches(SportsEnum sport)
         {
             //Gets matches
             List<Match> matchList = BetStars.GetMatchesByLeague(sport);
             matchList = SportsChatPlace.FillMatchesPicks(matchList, sport);
             matchList = Covers.FillCoversPercentages(matchList, sport);
             matchList = Covers.FillStandings(matchList, sport);
+            BetStars.BetMatches(matchList,sport);
 
             //Save in DB
-            MatchService.InsertMatches(matchList);
+            //MatchService.InsertMatches(matchList);
 
             return null;
         }

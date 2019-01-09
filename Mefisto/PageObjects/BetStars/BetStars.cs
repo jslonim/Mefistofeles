@@ -24,11 +24,13 @@ namespace Mefistofeles.PageObjects
         private By btn_Login = By.Id("loginButton");
         private By btn_Popup_Close = By.CssSelector(".previous");
         private By lbl_Account_Balance = By.CssSelector("#accountBalance a");
+        private By txt_Bet_Input = By.CssSelector(".singleBetInput.deactivate-spinner");
         private By match_Odds;
-
-        public List<Match> GetMatchesByLeague(SportsEnum sport)
+        private By btn_Place_Bet = By.CssSelector("#place-bet-button");
+        private By btn_Confirmation_Reset = By.CssSelector("#confirmation-reset");
+        private const string bettingAmnt = "0.01";
+        private void SetUp(SportsEnum sport)
         {
-            List<Match> matches = new List<Match>();
             switch (sport)
             {
                 case SportsEnum.NHL:
@@ -50,6 +52,11 @@ namespace Mefistofeles.PageObjects
                     throw new Exception("Sport not found");
                     break;
             }
+        }
+        public List<Match> GetMatchesByLeague(SportsEnum sport)
+        {
+            List<Match> matches = new List<Match>();
+            SetUp(sport);
             browser.Navigate().GoToUrl(URL);
             WaitForPageLoad(20);
             WaitUntilElementClickable(match_Time);
@@ -96,19 +103,51 @@ namespace Mefistofeles.PageObjects
 
         }
 
-        public void BetMatches(List<Match> matchList)
+        public void BetMatches(List<Match> matchList,SportsEnum sport)
         {
-            if (Convert.ToDouble(browser.FindElement(lbl_Account_Balance).Text.Split(new string[] { "USD" }, StringSplitOptions.None)[0]) >= 400.00)
-            {
-                URL = "https://www.betstars.com/espanol/#/ice_hockey/competitions/4719984";
-                browser.Navigate().GoToUrl(URL);
-                WaitForPageLoad(20);
-                WaitUntilElementClickable(match_Time);
-                Thread.Sleep(5000);
+            SetUp(sport);
+            browser.Navigate().GoToUrl(URL);
+            WaitForPageLoad(20);
+            WaitUntilElementClickable(match_Time);
+            Thread.Sleep(5000);
 
-                Login();
-                WaitUntilElementClickable(btn_Popup_Close);
-                browser.FindElement(btn_Popup_Close).Click();
+            Login();
+            WaitUntilElementClickable(btn_Popup_Close);
+            browser.FindElement(btn_Popup_Close).Click();
+
+            if (Convert.ToDouble(browser.FindElement(lbl_Account_Balance).Text.Split(new string[] { "USD" }, StringSplitOptions.None)[1]) >= 400.00)
+            {
+                foreach (var match in matchList)
+                {
+                    if (isValidMatch(match))
+                    {
+                        IWebElement row = browser.FindElements(matches_Rows).First(x => x.FindElements(match_Teams).Any(y => y.Text == match.Local.Name));
+
+                        if (match.Local.CoversWinPercentage > 70)
+                        {
+                           row.FindElements(match_Odds)[0].Click();
+                        }
+                        else
+                        {
+                            if (sport == SportsEnum.NHL)
+                            {
+                                row.FindElements(match_Odds)[2].Click();
+                            }
+                            else
+                            {
+                                row.FindElements(match_Odds)[1].Click();
+                            }
+                        }
+                    }
+                }
+
+                foreach (var txtBet in browser.FindElements(txt_Bet_Input))
+                {
+                    txtBet.SendKeys(bettingAmnt);
+                }
+                browser.FindElement(btn_Place_Bet).Click();
+                WaitUntilElementClickable(btn_Confirmation_Reset);
+                Thread.Sleep(5000);
             }
         }
 
@@ -118,7 +157,7 @@ namespace Mefistofeles.PageObjects
             (
                 (!match.Pick.ToLower().Contains("over") && !match.Pick.ToLower().Contains("under")) &&
                 (match.Local.CoversWinPercentage > 70)|| match.Road.CoversWinPercentage > 70 &&
-                (match.Local.Odds > 1.80 && match.Road.Odds > 1.80)                
+                (match.Local.Odds >= 1.80 && match.Road.Odds >= 1.80)                
             )
             {
                 return true;
