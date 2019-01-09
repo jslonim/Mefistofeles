@@ -36,7 +36,7 @@ namespace Mefistofeles
             BetStars.BetMatches(matchList,sport);
 
             //Save in DB
-            //MatchService.InsertMatches(matchList);
+            MatchService.InsertMatches(matchList);
 
             return null;
         }

@@ -28,7 +28,7 @@ namespace Mefistofeles.PageObjects
         private By match_Odds;
         private By btn_Place_Bet = By.CssSelector("#place-bet-button");
         private By btn_Confirmation_Reset = By.CssSelector("#confirmation-reset");
-        private const string bettingAmnt = "0.01";
+        private const string bettingAmnt = "1";
         private void SetUp(SportsEnum sport)
         {
             switch (sport)
