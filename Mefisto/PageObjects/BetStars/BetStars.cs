@@ -156,7 +156,7 @@ namespace Mefistofeles.PageObjects
             if
             (
                 (!match.Pick.ToLower().Contains("over") && !match.Pick.ToLower().Contains("under")) &&
-                (match.Local.CoversWinPercentage > 70)|| match.Road.CoversWinPercentage > 70 &&
+                (match.Local.CoversWinPercentage > 70|| match.Road.CoversWinPercentage > 70) &&
                 (match.Local.Odds >= 1.80 && match.Road.Odds >= 1.80)                
             )
             {

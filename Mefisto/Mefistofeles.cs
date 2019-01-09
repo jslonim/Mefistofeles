@@ -16,13 +16,11 @@ namespace Mefistofeles
     {
         public void Start()
         {
-            //TryRetry(() => ColectAndBetMatches(SportsEnum.NHL));
-            ColectAndBetMatches(SportsEnum.NHL);
-            //TryRetry(() => UpdatesLastMatches(SportsEnum.NHL));
-            //TryRetry(() => ColectAndBetMatches(SportsEnum.NBA));
-            //TryRetry(() => UpdatesLastMatches(SportsEnum.NBA));
+            TryRetry(() => ColectAndBetMatches(SportsEnum.NHL));
+            TryRetry(() => UpdatesLastMatches(SportsEnum.NHL));
+            TryRetry(() => ColectAndBetMatches(SportsEnum.NBA));
+            TryRetry(() => UpdatesLastMatches(SportsEnum.NBA));
 
-            //BetStars.BetMatches(new List<Match>());
 
             //Close program
             browser.Quit();
