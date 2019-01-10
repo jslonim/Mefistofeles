@@ -29,6 +29,7 @@ namespace Mefistofeles.PageObjects
         private By btn_Place_Bet = By.CssSelector("#place-bet-button");
         private By btn_Confirmation_Reset = By.CssSelector("#confirmation-reset");
         private const string bettingAmnt = "1";
+        private const double balance_floor = 450.00;
         private void SetUp(SportsEnum sport)
         {
             switch (sport)
@@ -115,7 +116,7 @@ namespace Mefistofeles.PageObjects
             WaitUntilElementClickable(btn_Popup_Close);
             browser.FindElement(btn_Popup_Close).Click();
 
-            if (Convert.ToDouble(browser.FindElement(lbl_Account_Balance).Text.Split(new string[] { "USD" }, StringSplitOptions.None)[1]) >= 400.00)
+            if (Convert.ToDouble(browser.FindElement(lbl_Account_Balance).Text.Split(new string[] { "USD" }, StringSplitOptions.None)[1]) >= balance_floor)
             {
                 foreach (var match in matchList)
                 {
