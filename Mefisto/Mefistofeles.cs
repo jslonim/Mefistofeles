@@ -21,7 +21,6 @@ namespace Mefistofeles
             TryRetry(() => ColectAndBetMatches(SportsEnum.NBA));
             TryRetry(() => UpdatesLastMatches(SportsEnum.NBA));
 
-
             //Close program
             browser.Quit();
         }

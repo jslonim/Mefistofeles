@@ -31,10 +31,10 @@ namespace Mefistofeles.PageObjects
             foreach (var match in matches)
             {
                 IWebElement box = browser.FindElements(gameBoxes)
-                    .First(x => match.Local.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[0].Trim())
-                             || match.Local.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[1].Trim())
-                             || match.Road.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[0].Trim())
-                             || match.Road.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[1].Trim())
+                    .First(x => match.Local.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" , "NY" }, StringSplitOptions.None)[0].Trim())
+                             || match.Local.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs", "NY" }, StringSplitOptions.None)[1].Trim())
+                             || match.Road.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs", "NY" }, StringSplitOptions.None)[0].Trim())
+                             || match.Road.Name.Trim().Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs", "NY" }, StringSplitOptions.None)[1].Trim())
                            );
 
                 int[] percentages = box.FindElements(teamWinPercentages).Select(x => x.Text != "-" ? Convert.ToInt32(x.Text.Replace('%', ' ')) : 0).ToArray();
