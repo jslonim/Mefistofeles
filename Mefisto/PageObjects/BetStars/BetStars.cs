@@ -112,7 +112,11 @@ namespace Mefistofeles.PageObjects
             WaitUntilElementClickable(match_Time);
             Thread.Sleep(5000);
 
-            Login();
+            if (!browser.FindElement(lbl_Account_Balance).Displayed)
+            {
+                Login();
+            }
+
             WaitUntilElementClickable(btn_Popup_Close);
             browser.FindElement(btn_Popup_Close).Click();
 
@@ -146,9 +150,12 @@ namespace Mefistofeles.PageObjects
                 {
                     txtBet.SendKeys(bettingAmnt);
                 }
-                browser.FindElement(btn_Place_Bet).Click();
-                WaitUntilElementClickable(btn_Confirmation_Reset);
-                Thread.Sleep(5000);
+                if (browser.FindElement(btn_Place_Bet).Displayed)
+                {
+                    browser.FindElement(btn_Place_Bet).Click();
+                    WaitUntilElementClickable(btn_Confirmation_Reset);
+                    Thread.Sleep(5000);
+                }             
             }
         }
 
@@ -157,8 +164,12 @@ namespace Mefistofeles.PageObjects
             if
             (
                 (!match.Pick.ToLower().Contains("over") && !match.Pick.ToLower().Contains("under")) &&
-                (match.Local.CoversWinPercentage > 70|| match.Road.CoversWinPercentage > 70) &&
-                (match.Local.Odds >= 1.80 && match.Road.Odds >= 1.80)                
+                (match.Local.Odds >= 1.80 && match.Road.Odds >= 1.80) &&                
+                (
+                    match.Local.CoversWinPercentage > 70 && match.Local.Name.ToLower().Contains(match.Pick.Trim().Split('+','-')[0].ToLower())
+                    || match.Road.CoversWinPercentage > 70 && match.Road.Name.ToLower().Contains(match.Pick.Trim().Split('+', '-')[0].ToLower())
+                )
+
             )
             {
                 return true;
