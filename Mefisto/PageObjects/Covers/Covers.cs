@@ -59,15 +59,18 @@ namespace Mefistofeles.PageObjects
             foreach (var match in matches)
             {
                 IWebElement box = browser.FindElements(gameBoxes)
-                    .First(x => match.Local.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[0].Trim())
+                    .FirstOrDefault(x => match.Local.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[0].Trim())
                              || match.Local.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[1].Trim())
                              || match.Road.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[0].Trim())
                              || match.Road.Name.Contains(x.FindElement(matchHeader).Text.Split(new string[] { "at", "vs" }, StringSplitOptions.None)[1].Trim())
                            );
 
-                string winner = box.FindElement(matchWinner).GetAttribute("className").Split(' ')[0];
-                match.Result = winner.Contains("home") ? match.Local.Name : match.Road.Name;
-                match.AfterTime = box.FindElement(matchStatus).Text == "Final" ? false : true;
+                if (box != null)
+                {
+                    string winner = box.FindElement(matchWinner).GetAttribute("className").Split(' ')[0];
+                    match.Result = winner.Contains("home") ? match.Local.Name : match.Road.Name;
+                    match.AfterTime = box.FindElement(matchStatus).Text == "Final" ? false : true;
+                }
             }
             return matches;
         }
