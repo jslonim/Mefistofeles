@@ -117,8 +117,12 @@ namespace Mefistofeles.PageObjects
                 Login();
             }
 
-            WaitUntilElementClickable(btn_Popup_Close);
-            browser.FindElement(btn_Popup_Close).Click();
+            try
+            {
+                WaitUntilElementClickable(btn_Popup_Close);
+                browser.FindElement(btn_Popup_Close).Click();
+            }
+            catch (Exception){}
 
             if (Convert.ToDouble(browser.FindElement(lbl_Account_Balance).Text.Split(new string[] { "USD" }, StringSplitOptions.None)[1]) >= balance_floor)
             {
