@@ -47,7 +47,7 @@ namespace Mefistofeles
             matchList = Covers.FillMatchesResults(matchList);
 
             //Save in DB
-            MatchService.UpdateMatchesResults(matchList);
+           // MatchService.UpdateMatchesResults(matchList);
 
             return null;
         }
