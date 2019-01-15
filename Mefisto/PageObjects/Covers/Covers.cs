@@ -23,8 +23,9 @@ namespace Mefistofeles.PageObjects
 
         public List<Match> FillCoversPercentages(List<Match> matches, SportsEnum sport)
         {
-            string URL = "https://www.covers.com/sports/{1}/matchups";
+            string URL = "https://www.covers.com/sports/{1}/matchups?selectedDate={2}";
             URL = URL.Replace("{1}", sport.ToString());
+            URL = URL.Replace("{2}", DateTime.Now.Date.ToString("yyyy-MM-dd"));
             browser.Navigate().GoToUrl(URL);
             WaitForPageLoad(30);
 

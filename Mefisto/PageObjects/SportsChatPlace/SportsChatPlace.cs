@@ -55,7 +55,7 @@ namespace Mefistofeles.PageObjects
                     if (existingMatches.Any(x => title[0].Contains(x.Local.Name) && title[0].Contains(x.Road.Name) && (title[1] == x.MatchDttm.Date.ToString("MM/dd/yy") || title[1] == x.MatchDttm.Date.ToString("M/d/yy") || title[1] == x.MatchDttm.Date.ToString("MM/dd/yyyy") || title[1] == x.MatchDttm.Date.ToString("M/d/yyyy"))))
                     {
                         var existingmatch = existingMatches.First(x => title[0].Contains(x.Local.Name) && title[0].Contains(x.Road.Name) && (title[1] == x.MatchDttm.Date.ToString("MM/dd/yy") || title[1] == x.MatchDttm.Date.ToString("M/d/yy") || title[1] == x.MatchDttm.Date.ToString("MM/dd/yyyy") || title[1] == x.MatchDttm.Date.ToString("M/d/yyyy")));
-                        existingmatch.Pick = browser.FindElements(matchPick)[1].Text;
+                        existingmatch.Pick = browser.FindElements(matchPick).Count > 0  ? browser.FindElements(matchPick)[1].Text : "No Pick";
                         existingmatch.Expert = browser.FindElement(expert).Text.Split(new string[] { "'" }, StringSplitOptions.None)[0].ToLower();
                         existingmatch.Sport = sport.ToString();
                     }
