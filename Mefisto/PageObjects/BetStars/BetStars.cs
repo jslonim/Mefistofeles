@@ -168,7 +168,7 @@ namespace Mefistofeles.PageObjects
             if
             (
                 (!match.Pick.ToLower().Contains("over") && !match.Pick.ToLower().Contains("under")) &&
-                (match.Local.Odds >= 1.80 && match.Road.Odds >= 1.80) &&                
+                ((match.Sport != "NBA" && match.Local.Odds >= 1.80 && match.Road.Odds >= 1.80) || (match.Sport == "NBA" && match.Local.Odds >= 1.75 && match.Road.Odds >= 1.75)) &&                
                 (
                     match.Local.CoversWinPercentage > 70 && match.Local.Name.ToLower().Contains(match.Pick.Trim().Split('+','-')[0].ToLower().Trim())
                     || match.Road.CoversWinPercentage > 70 && match.Road.Name.ToLower().Contains(match.Pick.Trim().Split('+', '-')[0].ToLower().Trim())
