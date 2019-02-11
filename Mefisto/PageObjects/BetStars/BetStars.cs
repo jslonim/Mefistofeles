@@ -128,7 +128,7 @@ namespace Mefistofeles.PageObjects
             {
                 foreach (var match in matchList)
                 {
-                    if (isValidMatch(match))
+                    if (isValidMatch_TeamPick(match))
                     {
                         IWebElement row = browser.FindElements(matches_Rows).First(x => x.FindElements(match_Teams).Any(y => y.Text == match.Local.Name));
 
@@ -163,7 +163,7 @@ namespace Mefistofeles.PageObjects
             }
         }
 
-        private bool isValidMatch(Match match)
+        private bool isValidMatch_TeamPick(Match match)
         {
             if
             (
@@ -174,6 +174,19 @@ namespace Mefistofeles.PageObjects
                     || match.Road.CoversWinPercentage > 70 && match.Road.Name.ToLower().Contains(match.Pick.Trim().Split('+', '-')[0].ToLower().Trim())
                 )
 
+            )
+            {
+                return true;
+            }
+
+            return false;
+        }
+        private bool isValidMatch_BothTeamsScore(Match match)
+        {
+            if
+            (
+                (match.Pick.ToLower().Contains("over") && match.Pick.ToLower().Contains("under")) ||
+                (match.Local.CoversWinPercentage < 70 && match.Road.CoversWinPercentage < 70 )
             )
             {
                 return true;
